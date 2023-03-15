@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'; 
 import { useDispatch } from 'react-redux';
 
+import LocationMap from '../LocationMap/LocationMap';
+
 import "./AddSpot.css"
 
 function AddSpot () {
@@ -41,11 +43,11 @@ function AddSpot () {
                 <textarea label='Description' placeholder='Describe where to view this plant - i.e. "right by the door", or "from the sidewalk facing south, next to the oak tree"' type="textarea" value={newSpot.description} onChange={(event) => handleChange(event, 'description')}></textarea>
                 {/* <input></input>
                 <select></select> */}
+                 <LocationMap />
                 <button type="submit">Submit</button>
             </form>
         </div>
     )
-
 }
 
 export default AddSpot; 
