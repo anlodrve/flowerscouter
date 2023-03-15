@@ -10,7 +10,7 @@ function AddSpot () {
     // const categoriesFromRedux = useSelector((store) => store.categories)
 
     // useEffect(() => {
-    //     dispatch({ type: "FETCH_GENRES" });
+    //     dispatch({ type: "FETCH_CATEGORIES" });
     // }, [])
 
 

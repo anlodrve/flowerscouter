@@ -13,10 +13,13 @@ function* getSpots() {
 
 function* postSpot(action) {
     try {
+        console.log('in post spot')
+        console.log(action.payload)
         yield axios.post(`/api/spot`, {payload: action.payload});
-        yield put({type: "GET_SPOTS"});
+       
+        // yield put({type: "GET_SPOTS"});
       } catch (error) {
-        console.log("Error in post spot:", error);
+        console.log("Error in post spot in saga:", error);
       }
 }
 
