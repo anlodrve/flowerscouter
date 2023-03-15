@@ -9,7 +9,7 @@ function ListOfSpots() {
 
     //load all spots from the list on page load
     useEffect(() => {
-        dispatch({ type: GET_SPOTS});
+        dispatch({ type: 'GET_SPOTS' });
     }, []);
 
     return (
