@@ -14,6 +14,7 @@ import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AddSpot from '../AddSpot/AddSpot';
+import ListOfSpots from '../ListOfSpots/ListOfSpots';
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
@@ -70,11 +71,19 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows AddSpot else shows LoginPage
             exact
             path="/add"
           >
             <AddSpot />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows ListOfSpots else shows LoginPage
+            exact
+            path="/list"
+          >
+            <ListOfSpots />
           </ProtectedRoute>
 
           <Route
