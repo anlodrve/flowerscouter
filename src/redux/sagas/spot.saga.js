@@ -1,6 +1,11 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
+function* spotSaga () {
+    yield takeEvery('GET_SPOTS', getSpots)
+    yield takeEvery('POST_SPOT', postSpot)
+}
+
 function* getSpots() {
     try {
         const spots = yield axios.get(`/api/spot` );
@@ -23,10 +28,5 @@ function* postSpot(action) {
       }
 }
 
-function* spotSaga () {
-    yield takeEvery('GET_SPOTS', getSpots)
-    yield takeEvery('POST_SPOT', postSpot)
-   
-}
 
 export default spotSaga; 

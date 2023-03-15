@@ -10,15 +10,20 @@ import { useHistory } from 'react-router-dom';
 function InfoPage() {
   const history = useHistory(); 
 
-const handleClick = () => {
+const handleAdd = () => {
     history.push("/add");
+}
+
+const handleList = () => {
+  history.push("/list");
 }
 
   return (
     <div className="container">
       <p>Info Page</p>
       <MainMap />
-      <button id="addSpot" onClick={handleClick}>Add a Spot</button>
+      <button id="addSpot" onClick={handleAdd}>Add a Spot</button>
+      <button id="toList" onClick={handleList}>List of Spots</button>
     </div>
   );
 }
