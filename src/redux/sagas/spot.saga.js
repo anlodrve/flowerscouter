@@ -3,15 +3,15 @@ import axios from 'axios';
 
 function* getSpots() {
     try {
-        yield axios.get(`/api/spot` );
-        yield put({type: `SET_SPOTS`, payload: spots.data })
+        const spots = yield axios.get(`/api/spot` );
+        yield put({type:`SET_SPOTS`, payload: spots.data })
         
     } catch (error) {
         console.log('error in getSpots saga', error)
     }
 }
 
-function* postSpot() {
+function* postSpot(action) {
     try {
         yield axios.post(`/api/spot`, {payload: action.payload});
         yield put({type: "GET_SPOTS"});

@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useDispatch } from 'react'; 
+import React, { useState, useEffect } from 'react'; 
+import { useDispatch } from 'react-redux';
 
 import "./AddSpot.css"
 
@@ -8,9 +9,9 @@ function AddSpot () {
     // const history = useHistory(); 
     // const categoriesFromRedux = useSelector((store) => store.categories)
 
-    useEffect(() => {
-
-    }, [])
+    // useEffect(() => {
+    //     dispatch({ type: "FETCH_GENRES" });
+    // }, [])
 
 
     const [newSpot, setNewSpot] = useState({
@@ -20,6 +21,10 @@ function AddSpot () {
         description: '',
     })
 
+    const handleChange = (event, key) => {
+        //key is a string value from the input
+        setNewSpot({...newSpot, [key]: event.target.value})
+    }
 
     const addSpot = (event) => {
         event.preventDefault();
