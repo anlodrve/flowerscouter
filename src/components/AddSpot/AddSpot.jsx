@@ -1,10 +1,10 @@
-import React, { useState, useEffect} from 'react'; 
+import React, { useState, useEffect, useDispatch } from 'react'; 
 
 import "./AddSpot.css"
 
 function AddSpot () {
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     // const history = useHistory(); 
     // const categoriesFromRedux = useSelector((store) => store.categories)
 
@@ -14,8 +14,8 @@ function AddSpot () {
 
 
     const [newSpot, setNewSpot] = useState({
-        lat: 0.00, 
-        lng: 0.00, 
+        // lat: 0.00, 
+        // lng: 0.00, 
         // category eventually
         description: '',
     })
