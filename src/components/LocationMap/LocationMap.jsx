@@ -12,7 +12,7 @@ const LocationMap = () => {
         <Wrapper
             apiKey={process.env.REACT_APP_API_KEY}
             version="beta"
-            libraries={["marker", "geocoding"]}>
+            libraries={["marker", "geocoding", "core"]}>
                 <MapComponent  />
         </Wrapper>
 )};
@@ -33,7 +33,7 @@ const mapOptions = {
     }, []);
     
     const handleTouchMap = (event) => {
-        console.log(window.google.maps.LatLng)
+        console.log(map)
     }
 
     //ref is a mutable place you can put data that doesnt trigger re-render
