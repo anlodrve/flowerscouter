@@ -1,8 +1,10 @@
 import React, { useMemo, useRef, useCallback, useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-//maps import
+//google maps import
 import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api"
 
+//import css
 import "./MainMap.css"
 
 const MainMap = () => {
@@ -26,6 +28,8 @@ const MainMap = () => {
 
 //Map is called in the return of MainMap 
 function Map() {
+
+    const spots = useSelector((store) => store.spots)
     const mapRef = useRef(); 
 
     //eventually want this center to be determined by current user geolocation 
@@ -42,6 +46,12 @@ function Map() {
 
     const onLoad = useCallback(map => (mapRef.current = map), []);
 
+    const dispatch=useDispatch(); 
+
+    useEffect(() => {
+        dispatch({ type: 'GET_SPOTS' });
+    }, []);
+
     return (
         <GoogleMap
             zoom={15} 
@@ -49,15 +59,18 @@ function Map() {
             mapContainerClassName="map-container"
             options={options}
             onLoad={onLoad}
-            onClick={(event) => handleClick(event)}
+            // onClick={(event) => handleClick(event)}
         >
+            {spots.map((spotObject) => {
+                return (
+                    <>
+                    {console.log(spotObject.location)}
+                    <MarkerF key={spotObject.id} position={({lat: spotObject.location.x, lng: spotObject.location.y})}></MarkerF>
+                    </>
+                )
+            })}
         </GoogleMap>
     )
-    // {newLocation.map((locationObject, i)=> {
-    //     return (
-    //       <MarkerF key={i} position={locationObject}/>
-    //     )
-    //   })}
 }
 
 export default MainMap; 

@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
-import spotsReducer from './spot.reducer';
+import spots from './spot.reducer';
+import location from './location.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -12,7 +13,8 @@ import spotsReducer from './spot.reducer';
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
-  spotsReducer, //all spots on the map
+  spots, //all spots on the map
+  location,
 });
 
 export default rootReducer;

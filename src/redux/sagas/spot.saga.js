@@ -10,7 +10,6 @@ function* getSpots() {
     try {
         const spots = yield axios.get(`/api/spot` );
         yield put({type:`SET_SPOTS`, payload: spots.data })
-        
     } catch (error) {
         console.log('error in getSpots saga', error)
     }
@@ -21,8 +20,7 @@ function* postSpot(action) {
         console.log('in post spot')
         console.log(action.payload)
         yield axios.post(`/api/spot`, {payload: action.payload});
-       
-        // yield put({type: "GET_SPOTS"});
+        yield put({type: "GET_SPOTS"});
       } catch (error) {
         console.log("Error in post spot in saga:", error);
       }

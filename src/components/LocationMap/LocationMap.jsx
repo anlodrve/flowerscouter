@@ -1,4 +1,5 @@
 import React, { useMemo, useRef, useCallback, useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 //imports from google maps
 import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api"
@@ -6,7 +7,7 @@ import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api"
 //import css
 import "./LocationMap.css"
 
-function LocationMap(){
+function LocationMap({setNewSpot}){
     const { isLoaded } = useJsApiLoader({
       googleMapsApiKey: process.env.REACT_APP_API_KEY,
     })
@@ -17,17 +18,14 @@ function LocationMap(){
   
       //return the component Map created below 
       return (
-        <div className="containerForAll">
-            <div className="inputs"></div>
             <div className="map">
               <Map />
             </div>
-        </div>
-    
       )
   }
   
 function Map() {
+    const dispatch = useDispatch(); 
     const mapRef = useRef(); 
   
     //useMemo performs the calculation once everytime the array arg changes, reuse the same value every time it re-renders
@@ -53,16 +51,20 @@ function Map() {
 
         setNewLocation([location])
         console.log(location);
+
+        dispatch({
+            type: 'SET_LOCATION', 
+            payload: location, 
+        })
     }
-    
-  
+
     const onLoad = useCallback(map => (mapRef.current = map), []);
   
     //functional component GoogleMap from above - takes three props
     //zoom, center, and how big of a map 
       return (
       <GoogleMap 
-          zoom={16} 
+          zoom={18} 
           center={center} 
           mapContainerClassName="map-container"
           options={options}
@@ -74,10 +76,9 @@ function Map() {
                     <MarkerF key={i} position={locationObject}/>
                 )
             })}
-          <MarkerF position={{lat: 44.94, lng: -93.25}}/>
+          {/* <MarkerF position={{lat: 44.94, lng: -93.25}}/> */}
           </GoogleMap>
       )
-  
   }
 
 export default LocationMap; 

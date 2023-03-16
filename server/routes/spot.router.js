@@ -15,16 +15,15 @@ router.get('/', (req, res) => {
   })
 });
 
-
-
 router.post('/', (req, res) => {
   const queryText =  
   `
-    INSERT INTO "mappedPlants" ("description")
-    VALUES ($1)
+    INSERT INTO "mappedPlants" ("location", "description")
+    VALUES ( POINT ($1, $2), $3)
   `
+  console.log(req.body.payload);
   //first query
-  pool.query(queryText, [req.body.payload.description])
+  pool.query(queryText, [req.body.payload.location.lat, req.body.payload.location.lng, req.body.payload.description])
   .then(result => {
     res.sendStatus(201);
   }).catch(err => {
