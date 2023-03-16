@@ -37,7 +37,14 @@ function Map() {
         // clickableIcons: false,
         }), []
     ); 
-    
+
+    const onLoad = useCallback(map => (mapRef.current = map), []);
+
+    return (
+        <GoogleMap>
+            
+        </GoogleMap>
+    )
 
 
 
