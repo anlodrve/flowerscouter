@@ -6,7 +6,7 @@ import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api"
 //import css
 import "./LocationMap.css"
 
-function FirstMap(){
+function LocationMap(){
     const { isLoaded } = useJsApiLoader({
       googleMapsApiKey: process.env.REACT_APP_API_KEY,
     })
@@ -32,11 +32,8 @@ function Map() {
   
     //useMemo performs the calculation once everytime the array arg changes, reuse the same value every time it re-renders
     const center = useMemo(() => ({lat: 44.94, lng: -93.25}), [] ) ;
-  
-    const [newMarker, setNewMarker] = useState({
-      lat: 0, 
-      lng: 0
-    });
+
+    const [newLocation, setNewLocation] = useState([])
   
     //customization 
     const options = useMemo(
@@ -48,26 +45,15 @@ function Map() {
     ); 
   
     const handleClick = (event) => {
-      // console.log(event.latLng.lat())
-      // console.log(event.latLng.lng())
-  
-      const location = {
-        lat: event.latLng.lat(),
-        lng: event.latLng.lng()
-      }
-  
-      console.log(location);
-      // setNewMarker(event.target.value)
-      // <MarkerF  />
+
+        const location = {
+            lat: event.latLng.lat(),
+            lng: event.latLng.lng()
+            }
+
+        setNewLocation([location])
+        console.log(location);
     }
-  
-    // google.maps.event.addListener(map, 'click', function(event) {
-    //   // Get the latitude and longitude of the clicked location
-    //   const lat = event.latLng.lat();
-    //   const lng = event.latLng.lng();
-    //   // Do something with the latitude and longitude values
-    //   console.log(lat, lng);
-    // });
     
   
     const onLoad = useCallback(map => (mapRef.current = map), []);
@@ -76,14 +62,18 @@ function Map() {
     //zoom, center, and how big of a map 
       return (
       <GoogleMap 
-          zoom={15} 
+          zoom={16} 
           center={center} 
           mapContainerClassName="map-container"
           options={options}
           onLoad={onLoad}
           onClick={(event) => handleClick(event)}
-          // value={{lat, lng}}
           >
+            {newLocation.map((locationObject, i)=> {
+                return (
+                    <MarkerF key={i} position={locationObject}/>
+                )
+            })}
           <MarkerF position={{lat: 44.94, lng: -93.25}}/>
           </GoogleMap>
       )
