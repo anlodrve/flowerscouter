@@ -41,8 +41,14 @@ function Map() {
     const onLoad = useCallback(map => (mapRef.current = map), []);
 
     return (
-        <GoogleMap>
-            
+        <GoogleMap
+            zoom={15} 
+            center={center} 
+            mapContainerClassName="map-container"
+            options={options}
+            onLoad={onLoad}
+            onClick={(event) => handleClick(event)}
+        >
         </GoogleMap>
     )
 
