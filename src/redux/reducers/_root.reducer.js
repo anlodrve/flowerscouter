@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
   spotsReducer, //all spots on the map
-  locationReducer,
+  location,
 });
 
 export default rootReducer;

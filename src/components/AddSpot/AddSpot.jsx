@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'; 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import LocationMap from '../LocationMap/LocationMap';
 
@@ -10,6 +10,7 @@ function AddSpot () {
     const dispatch = useDispatch();
     // const history = useHistory(); 
     // const categoriesFromRedux = useSelector((store) => store.categories)
+    const locationFromStore = useSelector((store)=> store.location)
 
     // useEffect(() => {
     //     dispatch({ type: "FETCH_CATEGORIES" });
@@ -17,8 +18,7 @@ function AddSpot () {
 
 
     const [newSpot, setNewSpot] = useState({
-        // lat: 0.00, 
-        // lng: 0.00, 
+        location: locationFromStore,
         // category eventually
         description: '',
     })
