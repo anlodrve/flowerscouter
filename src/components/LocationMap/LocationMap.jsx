@@ -1,4 +1,5 @@
 import React, { useMemo, useRef, useCallback, useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 //imports from google maps
 import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api"
@@ -17,17 +18,14 @@ function LocationMap(){
   
       //return the component Map created below 
       return (
-        <div className="containerForAll">
-            <div className="inputs"></div>
             <div className="map">
               <Map />
             </div>
-        </div>
-    
       )
   }
   
 function Map() {
+    const dispatch = useDispatch(); 
     const mapRef = useRef(); 
   
     //useMemo performs the calculation once everytime the array arg changes, reuse the same value every time it re-renders
@@ -53,6 +51,13 @@ function Map() {
 
         setNewLocation([location])
         console.log(location);
+
+        dispatch({
+            type: 'SET_LOCATION', 
+            payload: location, 
+            callback: setNewLocation
+        })
+        
     }
     
   
@@ -62,7 +67,7 @@ function Map() {
     //zoom, center, and how big of a map 
       return (
       <GoogleMap 
-          zoom={16} 
+          zoom={18} 
           center={center} 
           mapContainerClassName="map-container"
           options={options}
@@ -71,13 +76,12 @@ function Map() {
           >
             {newLocation.map((locationObject, i)=> {
                 return (
-                    <MarkerF key={i} position={locationObject}/>
+                    <MarkerF key={i} position={locationObject} onLoad={}/>
                 )
             })}
           <MarkerF position={{lat: 44.94, lng: -93.25}}/>
           </GoogleMap>
       )
-  
   }
 
 export default LocationMap; 
