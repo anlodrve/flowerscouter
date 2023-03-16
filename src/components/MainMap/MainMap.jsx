@@ -1,40 +1,63 @@
-import { Wrapper} from "@googlemaps/react-wrapper";
-import { useRef, useEffect, useState } from "react";
-import { createRoot } from "react-dom/client";
+import React, { useMemo, useRef, useCallback, useState, useEffect } from "react";
+
+//maps import
+import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api"
 
 import "./MainMap.css"
 
 const MainMap = () => {
-    return(
-        <Wrapper
-            apiKey={process.env.REACT_APP_API_KEY}
-            version="beta"
-            libraries={["marker"]}>
-                <MapComponent  />
-        </Wrapper>
-)};
+    const { isLoaded } = useJsApiLoader({
+        googleMapsApiKey: process.env.REACT_APP_API_KEY,
+      })
 
-const mapOptions = {
-    mapId: 'process.env.MAP_ID',
-    center: {lat: 44.9398, lng: -93.2533 },
-    zoom: 15, 
-    disableDefaultUI: true, 
-  }
+    //checking if map is there
+    if(!isLoaded) 
+        {return <div>Loading...</div>};
 
-function MapComponent () {
-    const [map, setMap] = useState(); 
-    const ref = useRef();
-  
-    useEffect(() => {
-      setMap(new window.google.maps.Map(ref.current, mapOptions))
-    }, []);
+  //return the component Map created below 
+  return (
+    <div className="mainMapOuterContainer">
+        <div className="mainMapInnerContainer">
+          <Map />
+        </div>
+    </div>
+  )
+}
 
-    //ref is a mutable place you can put data that doesnt trigger re-render
+//Map is called in the return of MainMap 
+function Map() {
+    const mapRef = useRef(); 
+
+    //eventually want this center to be determined by current user geolocation 
+    //useMemo performs the calculation once everytime the array arg changes, reuse the same value every time it re-renders
+    const center = useMemo(() => ({lat: 44.94, lng: -93.25}), [] ) ;
+
+  //customization 
+    const options = useMemo(
+        () => ({
+        // disableDefaultUI: true,
+        // clickableIcons: false,
+        }), []
+    ); 
+
+    const onLoad = useCallback(map => (mapRef.current = map), []);
+
     return (
-        <>
-            <div ref={ref} id="map" />
-        </>
-      )
+        <GoogleMap
+            zoom={15} 
+            center={center} 
+            mapContainerClassName="map-container"
+            options={options}
+            onLoad={onLoad}
+            onClick={(event) => handleClick(event)}
+        >
+        </GoogleMap>
+    )
+    // {newLocation.map((locationObject, i)=> {
+    //     return (
+    //       <MarkerF key={i} position={locationObject}/>
+    //     )
+    //   })}
 }
 
 export default MainMap; 
