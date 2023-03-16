@@ -24,9 +24,11 @@ const MainMap = () => {
   )
 }
 
+//Map is called in the return of MainMap 
 function Map() {
     const mapRef = useRef(); 
 
+    //eventually want this center to be determined by current user geolocation 
     //useMemo performs the calculation once everytime the array arg changes, reuse the same value every time it re-renders
     const center = useMemo(() => ({lat: 44.94, lng: -93.25}), [] ) ;
 
@@ -51,16 +53,11 @@ function Map() {
         >
         </GoogleMap>
     )
-
-
-
-
-
-
+    // {newLocation.map((locationObject, i)=> {
+    //     return (
+    //       <MarkerF key={i} position={locationObject}/>
+    //     )
+    //   })}
 }
-
-
-
-  
 
 export default MainMap; 
