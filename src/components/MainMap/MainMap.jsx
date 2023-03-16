@@ -1,40 +1,35 @@
-import { Wrapper} from "@googlemaps/react-wrapper";
-import { useRef, useEffect, useState } from "react";
-import { createRoot } from "react-dom/client";
+import React, { useMemo, useRef, useCallback, useState, useEffect } from "react";
+
+//maps import
+import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api"
 
 import "./MainMap.css"
 
 const MainMap = () => {
-    return(
-        <Wrapper
-            apiKey={process.env.REACT_APP_API_KEY}
-            version="beta"
-            libraries={["marker"]}>
-                <MapComponent  />
-        </Wrapper>
-)};
+    const { isLoaded } = useJsApiLoader({
+        googleMapsApiKey: process.env.REACT_APP_API_KEY,
+      })
 
-const mapOptions = {
-    mapId: 'process.env.MAP_ID',
-    center: {lat: 44.9398, lng: -93.2533 },
-    zoom: 15, 
-    disableDefaultUI: true, 
-  }
+    //checking if map is there
+    if(!isLoaded) 
+        {return <div>Loading...</div>};
 
-function MapComponent () {
-    const [map, setMap] = useState(); 
-    const ref = useRef();
-  
-    useEffect(() => {
-      setMap(new window.google.maps.Map(ref.current, mapOptions))
-    }, []);
-
-    //ref is a mutable place you can put data that doesnt trigger re-render
-    return (
-        <>
-            <div ref={ref} id="map" />
-        </>
-      )
+  //return the component Map created below 
+  return (
+    <div className="mainMapOuterContainer">
+        <div className="mainMapInnerContainer">
+          <Map />
+        </div>
+    </div>
+  )
 }
+
+function Map() {
+    const mapRef = useRef(); 
+}
+
+
+
+  
 
 export default MainMap; 
