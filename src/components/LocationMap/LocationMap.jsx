@@ -56,10 +56,8 @@ function Map() {
             type: 'SET_LOCATION', 
             payload: location, 
         })
-        
     }
-    
-  
+
     const onLoad = useCallback(map => (mapRef.current = map), []);
   
     //functional component GoogleMap from above - takes three props
