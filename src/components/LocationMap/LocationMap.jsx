@@ -76,7 +76,7 @@ function Map() {
           >
             {newLocation.map((locationObject, i)=> {
                 return (
-                    <MarkerF key={i} position={locationObject} onLoad={}/>
+                    <MarkerF key={i} position={locationObject}/>
                 )
             })}
           <MarkerF position={{lat: 44.94, lng: -93.25}}/>
