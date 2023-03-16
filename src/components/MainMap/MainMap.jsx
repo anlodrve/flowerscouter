@@ -26,6 +26,9 @@ const MainMap = () => {
 
 function Map() {
     const mapRef = useRef(); 
+
+    //useMemo performs the calculation once everytime the array arg changes, reuse the same value every time it re-renders
+  const center = useMemo(() => ({lat: 44.94, lng: -93.25}), [] ) ;
 }
 
 
