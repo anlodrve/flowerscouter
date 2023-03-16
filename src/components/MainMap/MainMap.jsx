@@ -30,7 +30,6 @@ const MainMap = () => {
 function Map() {
 
     const spots = useSelector((store) => store.spots)
-
     const mapRef = useRef(); 
 
     //eventually want this center to be determined by current user geolocation 
