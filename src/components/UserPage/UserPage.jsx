@@ -17,7 +17,9 @@ function UserPage() {
 
   const handleDelete = (event) => {
     event.preventDefault();
-    
+
+    const id = event.target.value;
+
     dispatch({
       type: "DELETE_SPOT",
       payload: id,
@@ -31,13 +33,13 @@ function UserPage() {
       <ul>
         {spots.map((spotObject) => {
           return (
-           <div>
+           <div key={spotObject.id}>
               <p>{spotObject.description}</p>
               <p>{spotObject.location.x}</p>
               <p>{spotObject.location.y}</p>
 
               {user.id === spotObject.author && (
-				        <button className="deleteButton" onClick={handleDelete}>
+				        <button className="deleteButton" value={spotObject.id} onClick={handleDelete}>
 					        Delete
 				        </button>
 			        )}
