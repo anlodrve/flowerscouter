@@ -19,7 +19,8 @@ router.get('/', (req, res) => {
     })
 });
 
-router.get('/:id', (req, res) => {
+//get spots authored by the logged-in user
+router.get('/:id', rejectUnauthenticated, (req, res) => {
     const queryText = 
       `
         SELECT * FROM "mappedPlants" WHERE "author" = $1
@@ -35,7 +36,7 @@ router.get('/:id', (req, res) => {
     })
 });
 
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     const queryText =  
       `
         INSERT INTO "mappedPlants" ("location", "description", "author")
