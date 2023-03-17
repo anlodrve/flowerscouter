@@ -6,19 +6,22 @@ import LocationMap from '../LocationMap/LocationMap';
 import "./AddSpot.css"
 
 function AddSpot () {
-    useEffect(() => {
-        dispatch({ type: "GET_CATEGORIES" });
-    }, [])
+    // useEffect(() => {
+    //     dispatch({ type: "GET_CATEGORIES" });
+    // }, [])
+
+    const user = useSelector((store) => store.user);
 
     const dispatch = useDispatch();
     // const history = useHistory(); 
-    const categoriesFromStore = useSelector((store) => store.categories)
+    // const categoriesFromStore = useSelector((store) => store.categories)
     const locationFromStore = useSelector((store)=> store.location)
     console.log('locationFromStore', locationFromStore)
 
     const [newSpot, setNewSpot] = useState({
         // category eventually
         description: '',
+        author: user.id
     })
 
     const handleChange = (event, key) => {
@@ -37,6 +40,8 @@ function AddSpot () {
         });
     }
 
+    console.log()
+
     return(
         <div className='addSpotForm'>
             <form onSubmit={addSpot}>
@@ -47,13 +52,13 @@ function AddSpot () {
                     value={newSpot.description} 
                     onChange={(event) => handleChange(event, 'description')}>
                 </textarea>
-                <select className='catDropDown' onChange={(event) => handleChange(event, 'category_id')}>
+                {/* <select className='catDropDown' onChange={(event) => handleChange(event, 'category_id')}>
                     {categoriesFromStore.map((categoryObject) => (
                         <option key={categoryObject.id} value={categoryObject.id}>
                             {categoryObject.category}
                         </option>
                     ))}
-                </select>
+                </select> */}
                  <LocationMap />
                 <button type="submit">Submit</button>
             </form>

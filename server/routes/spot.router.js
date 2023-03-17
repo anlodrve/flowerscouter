@@ -4,32 +4,48 @@ const router = express.Router();
 
 
 router.get('/', (req, res) => {
-  const queryText = `SELECT * FROM "mappedPlants" ORDER BY "id" ASC`
-  pool.query(queryText)
-  .then( result => {
-    res.send(result.rows);
-  })
-  .catch(err => {
-    console.log('ERROR: Get all spots', err);
-    res.sendStatus(500)
-  })
+    const queryText = `SELECT * FROM "mappedPlants" ORDER BY "id" ASC`
+    pool.query(queryText)
+    .then( result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log('ERROR: Get all spots', err);
+      res.sendStatus(500)
+    })
+});
+
+router.get('/:id', (req, res) => {
+    const queryText = 
+      `
+        SELECT * FROM "mappedPlants" WHERE "author" = $1
+      `
+    const queryParams = [req.params.id]
+    pool.query(queryText, queryParams)
+    .then( result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log('ERROR: Get details', err);
+      res.sendStatus(500)
+    })
 });
 
 router.post('/', (req, res) => {
-  const queryText =  
-  `
-    INSERT INTO "mappedPlants" ("location", "description")
-    VALUES ( POINT ($1, $2), $3)
-  `
-  console.log(req.body.payload);
-  //first query
-  pool.query(queryText, [req.body.payload.location.lat, req.body.payload.location.lng, req.body.payload.description])
-  .then(result => {
-    res.sendStatus(201);
-  }).catch(err => {
-    res.sendStatus(500); 
-    console.log('error in server post', err)
-  })
+    const queryText =  
+      `
+        INSERT INTO "mappedPlants" ("location", "description", "author")
+        VALUES ( POINT ($1, $2), $3, $4)
+      `
+    console.log(req.body.payload);
+    //first query
+    pool.query(queryText, [req.body.payload.location.lat, req.body.payload.location.lng, req.body.payload.description, req.body.payload.author])
+    .then(result => {
+      res.sendStatus(201);
+    }).catch(err => {
+      res.sendStatus(500); 
+      console.log('error in server post', err)
+    })
 });
 
 module.exports = router;
