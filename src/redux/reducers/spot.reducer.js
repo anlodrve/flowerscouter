@@ -3,6 +3,8 @@ const spotsReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_SPOTS':
             return action.payload; 
+        case 'SET_SPOTS_BY_ID':
+            return action.payload
         default:
             return state; 
     }

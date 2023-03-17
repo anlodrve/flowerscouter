@@ -7,7 +7,7 @@ import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api"
 //import css
 import "./LocationMap.css"
 
-function LocationMap({setNewSpot}){
+function LocationMap(){
     const { isLoaded } = useJsApiLoader({
       googleMapsApiKey: process.env.REACT_APP_API_KEY,
     })
