@@ -2,6 +2,10 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+//import authentication middleware
+const {
+	rejectUnauthenticated,
+} = require(`../modules/authentication-middleware`);
 
 router.get('/', (req, res) => {
     const queryText = `SELECT * FROM "mappedPlants" ORDER BY "id" ASC`
@@ -10,7 +14,7 @@ router.get('/', (req, res) => {
       res.send(result.rows);
     })
     .catch(err => {
-      console.log('ERROR: Get all spots', err);
+      console.log('Get all spots failed in server', err);
       res.sendStatus(500)
     })
 });
@@ -26,7 +30,7 @@ router.get('/:id', (req, res) => {
       res.send(result.rows);
     })
     .catch(err => {
-      console.log('ERROR: Get details', err);
+      console.log('Get by author failed in server', err);
       res.sendStatus(500)
     })
 });
@@ -44,10 +48,24 @@ router.post('/', (req, res) => {
       res.sendStatus(201);
     }).catch(err => {
       res.sendStatus(500); 
-      console.log('error in server post', err)
+      console.log('post failed in server', err)
     })
 });
 
+//delete only something the logged in user has created
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
 
+  queryText = 
+    `DELETE FROM "mappedPlants" WHERE "id" = $1 AND "author" = $2`
+  queryParams = [req.params.id, req.user.id]; 
+
+	pool.query(queryText, queryParams)
+		.then(() => {
+			res.sendStatus(204);
+		})
+		.catch((error) => {
+			console.log("Delete failed in server", error);
+		});
+});
 
 module.exports = router;
