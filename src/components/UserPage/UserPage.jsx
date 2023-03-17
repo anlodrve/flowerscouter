@@ -9,12 +9,20 @@ function UserPage() {
   // const spotsFromStore = useSelector(store => store.spots);
   const dispatch = useDispatch(); 
 
-      useEffect(() => {
-        dispatch({ type: "GET_SPOTS_BY_ID", payload: user.id });
+    useEffect(() => {
+      dispatch({ type: "GET_SPOTS_BY_ID", payload: user.id });
     }, [])
 
-      const spots = useSelector(store => store.spots);
+  const spots = useSelector(store => store.spots);
 
+  const handleDelete = (event) => {
+    event.preventDefault();
+    
+    dispatch({
+      type: "DELETE_SPOT",
+      payload: id,
+    });
+  };
 
   return (
     <div className="container">
@@ -27,10 +35,15 @@ function UserPage() {
               <p>{spotObject.description}</p>
               <p>{spotObject.location.x}</p>
               <p>{spotObject.location.y}</p>
+
+              {user.id === spotObject.author && (
+				        <button className="deleteButton" onClick={handleDelete}>
+					        Delete
+				        </button>
+			        )}
            </div>
           )
         })}
-        <div></div>
       </ul>
       <LogOutButton className="btn" />
     </div>
