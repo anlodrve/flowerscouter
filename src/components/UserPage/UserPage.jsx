@@ -53,9 +53,9 @@ function UserPage() {
               })}
             </ul>)
           : (<>
-            <h3>You haven't added any spots to the map yet!</h3>
-            <button id="addSpot" onClick={handleAdd}>Add a Spot</button>
-          </>)}
+              <h3>You haven't added any spots to the map yet!</h3>
+              <button id="addSpot" onClick={handleAdd}>Add a Spot</button>
+            </>)}
         </div>
       <LogOutButton className="btn" />
     </div>
