@@ -3,8 +3,9 @@ import axios from 'axios';
 
 function* spotSaga () {
     yield takeEvery('GET_SPOTS', getSpots)
-    yield takeEvery('POST_SPOT', postSpot)
     yield takeEvery('GET_SPOTS_BY_ID', getById)
+    yield takeEvery('POST_SPOT', postSpot)
+    yield takeEvery('DELETE_SPOT', deleteSpot)
 }
 
 function* getSpots() {
@@ -34,6 +35,15 @@ function* postSpot(action) {
       } catch (error) {
         console.log("Error in post spot in saga:", error);
       }
+}
+
+function* deleteSpot(action) {
+    try {
+        yield axios.delete(`/api/spot/${action.payload}`)
+        yield put({type: 'GET_SPOTS'})
+    } catch (error) {
+        console.log
+    }
 }
 
 export default spotSaga; 

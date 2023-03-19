@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'; 
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import LocationMap from '../LocationMap/LocationMap';
 
@@ -11,6 +12,7 @@ function AddSpot () {
     // }, [])
 
     const user = useSelector((store) => store.user);
+    const history = useHistory(); 
 
     const dispatch = useDispatch();
     // const history = useHistory(); 
@@ -38,6 +40,8 @@ function AddSpot () {
             type: 'POST_SPOT', 
             payload: {...newSpot, location: locationFromStore}, 
         });
+        history.push('/')
+
     }
 
     console.log()

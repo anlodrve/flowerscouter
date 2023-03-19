@@ -17,7 +17,7 @@ import AddSpot from '../AddSpot/AddSpot';
 import ListOfSpots from '../ListOfSpots/ListOfSpots';
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
+import MainPage from '../MainPage/MainPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
@@ -63,11 +63,11 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows MainPage else shows LoginPage
             exact
-            path="/info"
+            path="/home"
           >
-            <InfoPage />
+            <MainPage />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -121,7 +121,7 @@ function App() {
             {user.id ?
               // If the user is already logged in, 
               // redirect them to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/home" />
               :
               // Otherwise, show the Landing page
               <LandingPage />
