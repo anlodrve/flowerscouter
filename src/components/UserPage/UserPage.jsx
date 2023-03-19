@@ -3,6 +3,9 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch, } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+//import UserMap
+import UserMap from '../UserMap/UserMap';
+
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   // const spotsFromStore = useSelector(store => store.spots);
@@ -36,22 +39,27 @@ function UserPage() {
       <p>Your ID is: {user.id}</p>
       <div id="ternary">
         {spots.length > 0
-          ? (<ul>
-          {spots.map((spotObject) => {
-            return (
-              <div key={spotObject.id}>
-                  <p>{spotObject.description}</p>
-                  <p>{spotObject.location.x}</p>
-                  <p>{spotObject.location.y}</p>
+          ? (
+           <> 
+           <h3>Your Posts:</h3>
+            <UserMap />
+            <ul>
+            {spots.map((spotObject) => {
+              return (
+                <div key={spotObject.id}>
+                    <p>{spotObject.description}</p>
+                    <p>{spotObject.location.x}</p>
+                    <p>{spotObject.location.y}</p>
 
-                  {user.id === spotObject.author && (
-                    <button className="deleteButton" value={spotObject.id} onClick={handleDelete}>
-                      Delete
-                    </button>
-                  )}
-              </div>)
-              })}
-            </ul>)
+                    {user.id === spotObject.author && (
+                      <button className="deleteButton" value={spotObject.id} onClick={handleDelete}>
+                        Delete
+                      </button>
+                    )}
+                </div>)
+                })}
+              </ul>
+            </>)
           : (<>
               <h3>You haven't added any spots to the map yet!</h3>
               <button id="addSpot" onClick={handleAdd}>Add a Spot</button>

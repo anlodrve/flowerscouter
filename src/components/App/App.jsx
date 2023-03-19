@@ -65,7 +65,7 @@ function App() {
           <ProtectedRoute
             // logged in shows MainPage else shows LoginPage
             exact
-            path="/main"
+            path="/home"
           >
             <MainPage />
           </ProtectedRoute>
@@ -121,7 +121,7 @@ function App() {
             {user.id ?
               // If the user is already logged in, 
               // redirect them to the /user page
-              <Redirect to="/main" />
+              <Redirect to="/home" />
               :
               // Otherwise, show the Landing page
               <LandingPage />
