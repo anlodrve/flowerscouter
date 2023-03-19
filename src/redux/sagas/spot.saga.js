@@ -6,6 +6,7 @@ function* spotSaga () {
     yield takeEvery('GET_SPOTS_BY_ID', getById)
     yield takeEvery('POST_SPOT', postSpot)
     yield takeEvery('DELETE_SPOT', deleteSpot)
+    yield takeEvery('EDIT_SPOT', editSpot)
 }
 
 function* getSpots() {
@@ -42,7 +43,19 @@ function* deleteSpot(action) {
         yield axios.delete(`/api/spot/${action.payload}`)
         yield put({type: 'GET_SPOTS'})
     } catch (error) {
-        console.log
+        console.log('error in delete saga', error);
+    }
+}
+
+function* getSpots() {
+    try {
+        yield axios.put(`/api/spot/${action.payload.id}`, {
+            // payload: action.payload.category 
+        }); 
+
+        
+    } catch (error) {
+         console.log('error in put saga', error);
     }
 }
 
