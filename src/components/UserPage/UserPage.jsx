@@ -1,5 +1,8 @@
+//mui imports
+import { Button } from '@mui/material'
+
+//react imports
 import React, { useEffect } from 'react';
-import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch, } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -64,12 +67,12 @@ function UserPage() {
 
                     {user.id === spotObject.author && (
                       <>
-                      <button className="deleteButton" value={spotObject.id} onClick={handleDelete}>
+                      <Button variant='contained' className="deleteButton" value={spotObject.id} onClick={handleDelete}>
                         Delete
-                      </button>
-                       <button className="editButton" value={spotObject.id} onClick={handleEdit}>
+                      </Button>
+                       <Button variant='contained' className="editButton" value={spotObject.id} onClick={handleEdit}>
                         Edit
-                      </button>
+                      </Button>
                      </>
                     )}
                 </div>)
@@ -78,10 +81,9 @@ function UserPage() {
             </>)
           : (<>
               <h3>You haven't added any spots to the map yet!</h3>
-              <button id="addSpot" onClick={handleAdd}>Add a Spot</button>
+              <Button  variant='contained' id="addSpot" onClick={handleAdd}>Add a Spot</Button>
             </>)}
         </div>
-      <LogOutButton className="btn" />
     </div>
   );
 }
