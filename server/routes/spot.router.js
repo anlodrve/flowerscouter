@@ -39,12 +39,12 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 router.post('/', rejectUnauthenticated, (req, res) => {
     const queryText =  
       `
-        INSERT INTO "mappedPlants" ("location", "description", "author")
-        VALUES ( POINT ($1, $2), $3, $4)
+        INSERT INTO "mappedPlants" ("location", "description", "author", "category")
+        VALUES ( POINT ($1, $2), $3, $4, $5)
       `
     console.log(req.body.payload);
     //first query
-    pool.query(queryText, [req.body.payload.location.lat, req.body.payload.location.lng, req.body.payload.description, req.body.payload.author])
+    pool.query(queryText, [req.body.payload.location.lat, req.body.payload.location.lng, req.body.payload.description, req.body.payload.author, req.body.payload.category])
     .then(result => {
       res.sendStatus(201);
     }).catch(err => {
