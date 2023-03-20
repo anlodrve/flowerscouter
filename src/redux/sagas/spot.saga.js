@@ -47,7 +47,7 @@ function* deleteSpot(action) {
     }
 }
 
-function* getSpots() {
+function* editSpot(action) {
     try {
         yield axios.put(`/api/spot/${action.payload.id}`, {
             // payload: action.payload.category 

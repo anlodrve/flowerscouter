@@ -9,7 +9,7 @@ function* categoriesSaga () {
 //generator function
 function* getCategories() {
     try {
-        const categories = yield axios.get(`/api/categories` );
+        const categories = yield axios.get(`/api/categories`);
         console.log(categories.data)
         yield put({type:`SET_CATEGORIES`, payload: categories.data })
     } catch (error) {

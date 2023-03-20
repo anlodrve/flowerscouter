@@ -7,18 +7,16 @@ import LocationMap from '../LocationMap/LocationMap';
 import "./AddSpot.css"
 
 function AddSpot () {
-    // useEffect(() => {
-    //     dispatch({ type: "GET_CATEGORIES" });
-    // }, [])
-
     const user = useSelector((store) => store.user);
     const history = useHistory(); 
-
     const dispatch = useDispatch();
-    // const history = useHistory(); 
-    // const categoriesFromStore = useSelector((store) => store.categories)
+    const categoriesFromStore = useSelector((store) => store.categories)
+    console.log('catgories from store', categoriesFromStore)
     const locationFromStore = useSelector((store)=> store.location)
-    console.log('locationFromStore', locationFromStore)
+
+    useEffect(() => {
+        dispatch({ type: "GET_CATEGORIES" });
+    }, [])
 
     const [newSpot, setNewSpot] = useState({
         // category eventually
@@ -56,13 +54,13 @@ function AddSpot () {
                     value={newSpot.description} 
                     onChange={(event) => handleChange(event, 'description')}>
                 </textarea>
-                {/* <select className='catDropDown' onChange={(event) => handleChange(event, 'category_id')}>
+                <select className='catDropDown' onChange={(event) => handleChange(event, 'category')}>
                     {categoriesFromStore.map((categoryObject) => (
                         <option key={categoryObject.id} value={categoryObject.id}>
                             {categoryObject.category}
                         </option>
                     ))}
-                </select> */}
+                </select>
                  <LocationMap />
                 <button type="submit">Submit</button>
             </form>
