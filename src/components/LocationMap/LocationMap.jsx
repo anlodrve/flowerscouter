@@ -76,7 +76,6 @@ function Map() {
                     <MarkerF key={i} position={locationObject}/>
                 )
             })}
-          {/* <MarkerF position={{lat: 44.94, lng: -93.25}}/> */}
           </GoogleMap>
       )
   }

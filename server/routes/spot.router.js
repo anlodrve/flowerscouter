@@ -89,4 +89,17 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 		});
 });
 
+router.put('/:id', (req, res) => {
+  const queryText = `UPDATE "mappedPlants" SET "description" = $1 WHERE "id" = $2`
+  const queryParams = [req.body.description, req.params.id]
+
+  pool.query(queryText, queryParams)
+		.then((result) => {
+			res.sendStatus(204);
+		})
+		.catch((error) => {
+			console.log("Delete failed in server", error);
+		});
+})
+
 module.exports = router;

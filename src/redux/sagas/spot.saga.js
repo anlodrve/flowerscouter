@@ -65,10 +65,9 @@ function* deleteSpot(action) {
 function* updateSpot(action) {
     try {
         yield axios.put(`/api/spot/${action.payload.id}`, {
-            // payload: action.payload.category 
+            description: action.payload.description
         }); 
-
-        
+        yield put({ type: 'GET_SPOTS' })
     } catch (error) {
          console.log('error in put saga', error);
     }
