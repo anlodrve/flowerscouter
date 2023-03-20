@@ -30,16 +30,16 @@ function UserPage() {
       });
   };
 
-  const handleEdit = (event) => {
-    event.preventDefault();
+//   const handleEdit = (event) => {
+//     event.preventDefault();
 
-    const id = event.target.value;
+//     const id = event.target.value;
 
-    dispatch({
-      type: "EDI_SPOT",
-      payload: id,
-    });
-};
+//     dispatch({
+//       type: "EDIT_SPOT",
+//       payload: id,
+//     });
+// };
 
   const handleAdd = () => {
     history.push("/add");
@@ -67,7 +67,7 @@ function UserPage() {
                       <button className="deleteButton" value={spotObject.id} onClick={handleDelete}>
                         Delete
                       </button>
-                       <button className="editButton" value={spotObject.id} onClick={handleEdit}>
+                       <button className="editButton" value={spotObject.id} onClick={history.push(`/edit/${spotObject.id}`)}>
                         Edit
                       </button>
                      </>

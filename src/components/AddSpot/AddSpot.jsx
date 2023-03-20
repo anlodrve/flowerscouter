@@ -40,8 +40,6 @@ function AddSpot () {
 
     }
 
-    console.log()
-
     return(
         <div className='addSpotForm'>
             <form onSubmit={addSpot}>

@@ -15,6 +15,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AddSpot from '../AddSpot/AddSpot';
 import ListOfSpots from '../ListOfSpots/ListOfSpots';
+import EditSpot from '../EditSpot/EditSpot';
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import MainPage from '../MainPage/MainPage';
@@ -86,6 +87,14 @@ function App() {
             <ListOfSpots />
           </ProtectedRoute>
 
+           <ProtectedRoute 
+            //logged in shows edit page, passing id as a parameter, else shows LoginPage
+            exact 
+            path="/edit/:id" 
+            >
+              <EditSpot />
+          </ProtectedRoute>
+
           <Route
             exact
             path="/login"
@@ -130,7 +139,7 @@ function App() {
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
-            <h1>404</h1>
+            <h1>404 Page Not Found</h1>
           </Route>
         </Switch>
         <Footer />
