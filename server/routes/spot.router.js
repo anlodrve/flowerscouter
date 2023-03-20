@@ -7,6 +7,7 @@ const {
 	rejectUnauthenticated,
 } = require(`../modules/authentication-middleware`);
 
+//get all spots
 router.get('/', (req, res) => {
     const queryText = `SELECT * FROM "mappedPlants" ORDER BY "id" ASC`
     pool.query(queryText)
@@ -20,7 +21,7 @@ router.get('/', (req, res) => {
 });
 
 //get spots authored by the logged-in user
-router.get('/:id', rejectUnauthenticated, (req, res) => {
+router.get('/user/:id', rejectUnauthenticated, (req, res) => {
     const queryText = 
       `
         SELECT * FROM "mappedPlants" WHERE "author" = $1
@@ -35,6 +36,25 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
       res.sendStatus(500)
     })
 });
+
+//get spot by spot id 
+router.get('/:id', rejectUnauthenticated, (req, res) => {
+  const queryText = 
+    `
+      SELECT * FROM "mappedPlants" WHERE "id" = $1
+    `
+  const queryParams = [req.params.id]
+  console.log("id is:", req.params.id)
+  pool.query(queryText, queryParams)
+  .then( result => {
+    res.send(result.rows);
+  })
+  .catch(err => {
+    console.log('Get individual spot failed in server', err);
+    res.sendStatus(500)
+  })
+});
+
 
 router.post('/', rejectUnauthenticated, (req, res) => {
     const queryText =  

@@ -67,7 +67,8 @@ function UserPage() {
                       <button className="deleteButton" value={spotObject.id} onClick={handleDelete}>
                         Delete
                       </button>
-                       <button className="editButton" value={spotObject.id} onClick={history.push(`/edit/${spotObject.id}`)}>
+                       <button className="editButton" value={spotObject.id} onClick={() => history.push(`/edit/${spotObject.id}`)}
+                      >
                         Edit
                       </button>
                      </>
