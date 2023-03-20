@@ -2,7 +2,7 @@ import React, { useMemo, useRef, useCallback, useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux";
 
 //google maps import
-import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api"
+import { GoogleMap, useJsApiLoader, MarkerF, InfoWindow } from "@react-google-maps/api"
 
 //import css
 import "./MainMap.css"
@@ -47,6 +47,7 @@ function Map() {
     const onLoad = useCallback(map => (mapRef.current = map), []);
 
     const dispatch=useDispatch(); 
+    const [selectedMarker, setSelectedMarker] = useState(null);
 
     useEffect(() => {
         dispatch({ type: 'GET_SPOTS' });
@@ -59,16 +60,36 @@ function Map() {
             mapContainerClassName="map-container"
             options={options}
             onLoad={onLoad}
-            // onClick={(event) => handleClick(event)}
         >
             {spots.map((spotObject) => {
                 return (
                     <>
-                    {console.log(spotObject.location)}
-                    <MarkerF key={spotObject.id} position={({lat: spotObject.location.x, lng: spotObject.location.y})}></MarkerF>
+                        {console.log(spotObject.location)}
+                        <MarkerF 
+                            key={spotObject.id} 
+                            position={({lat: spotObject.location.x, lng: spotObject.location.y})}
+                            onClick={(spotObject) => {
+                                setSelectedMarker(spotObject);
+                                console.log('selectedMarker', selectedMarker)
+                            }}
+                            >
+                        </MarkerF>
                     </>
                 )
             })}
+
+            {selectedMarker 
+                ? 
+                    (<InfoWindow
+                        key={selectedMarker.id}
+                        position={{lat: spotObject.location.x, lng: spotObject.location.y}}
+                        >
+                            <div>
+                                <h3>Flower!</h3>
+                                <p></p>
+                            </div>
+                    </InfoWindow>) 
+                : null}
         </GoogleMap>
     )
 }
