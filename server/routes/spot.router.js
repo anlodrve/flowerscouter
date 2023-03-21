@@ -91,8 +91,8 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  const queryText = `UPDATE "mappedPlants" SET "description" = $1 WHERE "id" = $2`
-  const queryParams = [req.body.description, req.params.id]
+  const queryText = `UPDATE "mappedPlants" SET "description" = $1, "location" = $2 WHERE "id" = $3`
+  const queryParams = [req.body.description, req.body.location, req.params.id]
 
   pool.query(queryText, queryParams)
 		.then((result) => {

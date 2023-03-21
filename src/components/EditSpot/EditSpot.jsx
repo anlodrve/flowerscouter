@@ -19,37 +19,49 @@ function EditSpot(){
         dispatch({ type: "SELECT_SPOT", payload: id});
         //get all the categories 
         dispatch({ type: "GET_CATEGORIES" });
+        
     }, [])
 
-    // const { isLoaded } = useJsApiLoader({
-    //     googleMapsApiKey: process.env.REACT_APP_API_KEY,
-    // })  
-
     const selectedSpot = useSelector((store) => store.edit);
-    // const spotObject = selectedSpot.reduce()
-    // console.log('selectedSpot:', spotObject)
+    console.log('selectedSpot', selectedSpot)
+   //set starting center location 
+   const [centerLat, setCenterLat] = useState(44.97)
+   const [centerLng, setCenterLng] = useState(-93.25)
 
-    // const [spotToUpdate, setSpotToUpdate] = useState(selectedSpot);
-    // console.log('spotToUpdate description', spotToUpdate.description);
-    
+   let center = {lat: centerLat, lng: centerLng}
+   
+
+//    console.log('selectedSpot x', selectedSpot.location.x)
+
+
+    // setCenterLat(selectedSpot.location.x)
+    // setCenterLng(selectedSpot.location.y)
+
+    const { isLoaded } = useJsApiLoader({
+        googleMapsApiKey: process.env.REACT_APP_API_KEY,
+    })  
+
+    console.log('selectedSpot:', selectedSpot)
+
     const handleChange = (event, key) => {
         //key is a string value from the input
         dispatch({
             type: 'EDIT_ONCHANGE', 
             payload: {property: key, value: event.target.value}
         })
-        // setSpotToUpdate({...spotToUpdate, [key]: event.target.value})
-        // console.log(spotToUpdate);
     }
 
-    // const handleClick = (event, key) => {
-    //     const location = {
-    //         lat: event.latLng.lat(),
-    //         lng: event.latLng.lng()
-    //         }
-    //    dispatch({
-    //     location:{location}
-    // })
+    const handleClick = (event, key) => {
+        const clickLocation = {
+            x: event.latLng.lat(),
+            y: event.latLng.lng()
+            }
+
+        setNewLocation([clickLocation]) 
+       dispatch({
+        type: 'EDIT_LOCATION',
+        payload: {location: clickLocation}
+    })}
 
     const handleSubmit = () => {
         console.log(selectedSpot);
@@ -60,28 +72,34 @@ function EditSpot(){
 
         history.push('/user');
     }
+    
+    const [newLocation, setNewLocation] = useState([selectedSpot]) 
+    
+    // if(!selectedSpot.location){
+    //     return <div>Loading...</div>
+    // }
 
-    //eventually want this center to be determined by current user geolocation 
-    //useMemo performs the calculation once everytime the array arg changes, reuse the same value every time it re-renders
-    // const center = useMemo(() => ({lat:spotToUpdate.location.x, lng: spotToUpdate.location.y}), [] ) ;
-          
-    // if(!isLoaded) 
-    //     {return <div>Loading...</div>};
+    if(!isLoaded) 
+        {return <div>Loading...</div>};
 
     return(
         <div>
             <h2>Edit Post</h2>
             <form id="editSpotForm" onSubmit={handleSubmit}>
             <div className="mapContainer">
-                {/* <GoogleMap
+                <GoogleMap
                         zoom={15} 
                         center={center} 
                         mapContainerClassName="map-container"
                         onLoad={onLoad}
                         onClick={(event) => handleClick(event, 'location')}
                         >
-                            <MarkerF key={selectedSpot.id} position={{lat: selectedSpot.location.x, lng: selectedSpot.location.y}}></MarkerF> 
-                    </GoogleMap> */}
+                            {newLocation.map((locationObject)=> {
+                                return (
+                                    <MarkerF key={locationObject.id} position={{lat: locationObject.location.x, lng: locationObject.location.y}}/>
+                                )
+                            })}
+                    </GoogleMap>
             </div>
             <textarea
                 label='Description' 
