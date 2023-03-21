@@ -30,6 +30,17 @@ function UserPage() {
       });
   };
 
+//   const handleEdit = (event) => {
+//     event.preventDefault();
+
+//     const id = event.target.value;
+
+//     dispatch({
+//       type: "EDIT_SPOT",
+//       payload: id,
+//     });
+// };
+
   const handleAdd = () => {
     history.push("/add");
 }
@@ -52,9 +63,15 @@ function UserPage() {
                     <p>{spotObject.location.y}</p>
 
                     {user.id === spotObject.author && (
+                      <>
                       <button className="deleteButton" value={spotObject.id} onClick={handleDelete}>
                         Delete
                       </button>
+                       <button className="editButton" value={spotObject.id} onClick={() => history.push(`/edit/${spotObject.id}`)}
+                      >
+                        Edit
+                      </button>
+                     </>
                     )}
                 </div>)
                 })}
