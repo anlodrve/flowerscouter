@@ -5,7 +5,7 @@ const editReducer = (state = {}, action ) => {
         case 'EDIT_ONCHANGE':
             return {...state, [action.payload.property]: action.payload.value }
         case 'EDIT_LOCATION':
-            return {...state, [action.payload.location]: action.payload.value}
+            return {...state, location: action.payload.location}
         default: 
             return state
     }
