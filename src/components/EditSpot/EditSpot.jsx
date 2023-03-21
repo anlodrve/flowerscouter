@@ -12,7 +12,7 @@ function EditSpot(){
     const history = useHistory(); 
     const mapRef = useRef(); 
 
-    // const onLoad = useCallback(map => (mapRef.current = map), []);
+    const onLoad = useCallback(map => (mapRef.current = map), []);
 
     useEffect(() => {
         //get individual spot based on ID from url params
@@ -25,31 +25,37 @@ function EditSpot(){
     //     googleMapsApiKey: process.env.REACT_APP_API_KEY,
     // })  
 
-    //even though it's one spot, it comes back as an array
-    const selectedSpot = useSelector((store) => store.spots); 
-    // console.log(selectedSpot[0].location)
+    const selectedSpot = useSelector((store) => store.edit);
+    // const spotObject = selectedSpot.reduce()
+    // console.log('selectedSpot:', spotObject)
 
-    const [spotToUpdate, setSpotToUpdate] = useState(selectedSpot[0]);
+    // const [spotToUpdate, setSpotToUpdate] = useState(selectedSpot);
     // console.log('spotToUpdate description', spotToUpdate.description);
     
     const handleChange = (event, key) => {
         //key is a string value from the input
-        setSpotToUpdate({...spotToUpdate, [key]: event.target.value})
-        console.log(spotToUpdate);
+        dispatch({
+            type: 'EDIT_ONCHANGE', 
+            payload: {property: key, value: event.target.value}
+        })
+        // setSpotToUpdate({...spotToUpdate, [key]: event.target.value})
+        // console.log(spotToUpdate);
     }
 
-    // const handleClick = (event) => {
+    // const handleClick = (event, key) => {
     //     const location = {
     //         lat: event.latLng.lat(),
     //         lng: event.latLng.lng()
     //         }
-    //     setSpotToUpdate({...spotToUpdate, location:{location}})
-    // }
+    //    dispatch({
+    //     location:{location}
+    // })
 
     const handleSubmit = () => {
+        console.log(selectedSpot);
         dispatch({
             type: 'UPDATE_SPOT',
-            payload: spotToUpdate
+            payload: selectedSpot
         })
 
         history.push('/user');
@@ -66,24 +72,21 @@ function EditSpot(){
         <div>
             <h2>Edit Post</h2>
             <form id="editSpotForm" onSubmit={handleSubmit}>
-            {/* <div className="mapContainer">
-                <GoogleMap
+            <div className="mapContainer">
+                {/* <GoogleMap
                         zoom={15} 
                         center={center} 
                         mapContainerClassName="map-container"
                         onLoad={onLoad}
-                        onClick={(event) => handleClick(event)}
+                        onClick={(event) => handleClick(event, 'location')}
                         >
-                            {console.log(selectedSpot)}
-                        {selectedSpot.map(spotObject => {
-                            <MarkerF key={spotObject.id} position={{lat: spotObject.location.x, lng: spotObject.location.y}}></MarkerF> 
-                        })}
-                    </GoogleMap>
-            </div> */}
+                            <MarkerF key={selectedSpot.id} position={{lat: selectedSpot.location.x, lng: selectedSpot.location.y}}></MarkerF> 
+                    </GoogleMap> */}
+            </div>
             <textarea
                 label='Description' 
                 type="textarea" 
-                value={spotToUpdate.description}
+                value={selectedSpot.description}
                 onChange={(event) => handleChange(event, 'description')}>
                 </textarea>
             <button type="submit">Save Changes</button>

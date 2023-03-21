@@ -5,8 +5,6 @@ const spotsReducer = (state = [], action) => {
             return action.payload; 
         case 'SET_SPOTS_BY_USERID':
             return action.payload
-        case 'SET_CURRENT_SPOT':
-            return action.payload
         default:
             return state; 
     }

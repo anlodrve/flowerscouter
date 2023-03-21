@@ -4,6 +4,7 @@ import user from './user.reducer';
 import spots from './spot.reducer';
 import location from './location.reducer';
 import categories from './categories.reducer';
+import edit from './edit.reducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   spots, //all spots on the map
   location, //location data from LocationMap
   categories, //categories from database
+  edit, //editing parts of existing spots
 });
 
 export default rootReducer;
