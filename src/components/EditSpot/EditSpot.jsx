@@ -28,6 +28,8 @@ function EditSpot(){
    //set starting center location 
    let center = useMemo(() => ({lat: selectedSpot.location?.x, lng: selectedSpot.location?.y}), [] ) ;
 
+//    console.log('selectedSpot x', selectedSpot.location.x)
+
     const { isLoaded } = useJsApiLoader({
         googleMapsApiKey: process.env.REACT_APP_API_KEY,
     })  
@@ -42,13 +44,12 @@ function EditSpot(){
         })
     }
 
-    const handleClick = (event, key) => {
+    const handleClick = (event) => {
         const clickLocation = {
             x: event.latLng.lat(),
             y: event.latLng.lng()
             }
 
-        
        dispatch({
         type: 'EDIT_LOCATION',
         payload: {location: clickLocation}
@@ -63,6 +64,12 @@ function EditSpot(){
 
         history.push('/user');
     }
+    
+    // const [newLocation, setNewLocation] = useState([selectedSpot]) 
+    
+    // if(!selectedSpot.location){
+    //     return <div>Loading...</div>
+    // }
 
     if(!isLoaded) 
         {return <div>Loading...</div>};
@@ -79,7 +86,11 @@ function EditSpot(){
                         onLoad={onLoad}
                         onClick={(event) => handleClick(event, 'location')}
                         >
-                        <MarkerF key={selectedSpot.id} position={{lat: selectedSpot.location.x, lng: selectedSpot.location.y}}/>
+
+                                
+                        <MarkerF key={selectedSpot.id} position={{lat: selectedSpot?.location?.x, lng: selectedSpot?.location?.y}}/>
+                                
+
                     </GoogleMap>
             </div>
             <textarea
