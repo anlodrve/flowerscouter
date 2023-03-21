@@ -1,5 +1,5 @@
 To Do: 
-    [] U! update something - description, location???, categories
+    [x] U! update location???, categories
     [] add comments
     [] add likes
     [] nav bar 
@@ -13,5 +13,7 @@ To Do:
         [x] show map on user page with all their spots     
         [x] figure out the home page???
         [x] add categories 
+        [x] U! update description 
+
 
 

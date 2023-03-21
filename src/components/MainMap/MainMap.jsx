@@ -23,8 +23,7 @@ const MainMap = () => {
           <Map />
         </div>
     </div>
-  )
-}
+  )}
 
 //Map is called in the return of MainMap 
 function Map() {
@@ -39,7 +38,7 @@ function Map() {
   //customization 
     const options = useMemo(
         () => ({
-        // disableDefaultUI: true,
+        disableDefaultUI: true,
         // clickableIcons: false,
         }), []
     ); 
@@ -68,6 +67,7 @@ function Map() {
                     <MarkerF key={spotObject.id} position={({lat: spotObject.location.x, lng: spotObject.location.y})}></MarkerF>
                     </>
                 )
+            // {spots.map(spot.category => )}
             })}
         </GoogleMap>
     )

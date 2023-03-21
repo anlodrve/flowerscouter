@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
 router.get('/user/:id', rejectUnauthenticated, (req, res) => {
     const queryText = 
       `
-        SELECT * FROM "mappedPlants" WHERE "author" = $1
+        SELECT * FROM "mappedPlants" WHERE "author" = $1 ORDER BY "id" DESC
       `
     const queryParams = [req.params.id]
     pool.query(queryText, queryParams)
