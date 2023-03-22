@@ -7,7 +7,7 @@ const {rejectUnauthenticated,} = require(`../modules/authentication-middleware`)
 
 router.get('/', (req, res) => {
     const queryText = 
-        `SELECT * FROM "categories" ORDER BY "category" ASC`;
+        `SELECT * FROM "categories" ORDER BY "name" ASC`;
 
     pool.query(queryText)
         .then((result) => {

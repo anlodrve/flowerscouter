@@ -31,9 +31,17 @@ function Map() {
     const spots = useSelector((store) => store.spots)
     const mapRef = useRef(); 
 
-    //eventually want this center to be determined by current user geolocation 
-    //useMemo performs the calculation once everytime the array arg changes, reuse the same value every time it re-renders
-    const center = useMemo(() => ({lat: 44.94, lng: -93.25}), [] ) ;
+    //set starting center location 
+    const [centerLat, setCenterLat] = useState(0)
+    const [centerLng, setCenterLng] = useState(0)
+
+    const onLoad = useCallback(map => (mapRef.current = map), []);
+    const dispatch=useDispatch(); 
+
+    const center = {lat: centerLat, lng: centerLng}
+
+    //useMemo(() => (), [] ) ;
+    // former center {lat: 44.94, lng: -93.25}
 
   //customization 
     const options = useMemo(
@@ -43,11 +51,13 @@ function Map() {
         }), []
     ); 
 
-    const onLoad = useCallback(map => (mapRef.current = map), []);
-
-    const dispatch=useDispatch(); 
-
     useEffect(() => {
+        //get user current location
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                setCenterLat(position.coords.latitude)
+                setCenterLng(position.coords.longitude)
+            })
         dispatch({ type: 'GET_SPOTS' });
     }, []);
 
