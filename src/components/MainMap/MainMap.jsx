@@ -7,6 +7,9 @@ import { GoogleMap, useJsApiLoader, MarkerF, InfoWindow } from "@react-google-ma
 //import css
 import "./MainMap.css"
 
+//import Marker custom component
+import Marker from "../Marker/Marker";
+
 const MainMap = () => {
     const { isLoaded } = useJsApiLoader({
         googleMapsApiKey: process.env.REACT_APP_API_KEY,
@@ -45,21 +48,9 @@ function Map() {
     ); 
 
     const onLoad = useCallback(map => (mapRef.current = map), []);
-
     const dispatch=useDispatch(); 
-    const [infoWindowOpen, setInfoWindowOpen] = useState(false);
 
-    const selectedMarker = useSelector((store) => store.infoWindowReducer)
-
-    const handleClick = (event) => {
-        // setMarkerWithInfoWindow(event.target.value)
-        dispatch ({
-            type: 'SET_MARKER_INFOWINDOW', 
-            payload: event.target.value
-        })
-        setInfoWindowOpen(true);
-    }
-
+    // const selectedMarker = useSelector((store) => store.infoWindowReducer)
     useEffect(() => {
         dispatch({ type: 'GET_SPOTS' });
     }, []);
@@ -76,24 +67,7 @@ function Map() {
                 return (
                     <>
                         {console.log(spotObject.location)}
-                        <MarkerF 
-                            id={spotObject.id}
-                            value={spotObject} 
-                            position={({lat: spotObject.location.x, lng: spotObject.location.y})}
-                            onClick={handleClick}
-                            >
-                                {infoWindowOpen && (
-                                    <InfoWindow 
-                                        onCloseClick={() => setInfoWindowOpen(false)}
-                                        position={({lat: selectedMarker.location.x, lng: selectedMarker.location.y})}
-                                        >
-                                         <div>
-                                            <h3>Flower!</h3>
-                                            {/* <p></p> */}
-                                        </div>
-                                    </InfoWindow>
-                                )}
-                        </MarkerF>
+                        <Marker spotObject={spotObject}/>
                     </>
                 )
             })}
