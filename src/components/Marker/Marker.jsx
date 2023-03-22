@@ -22,7 +22,7 @@ function Marker(spotObject) {
                             position={({lat: spotObject.spotObject?.location?.x, lng: spotObject.spotObject?.location?.y})}
                         >
                             
-                                <h3>Flower!</h3>
+                                <h3></h3>
                               
                         </InfoWindowF>
                      )}

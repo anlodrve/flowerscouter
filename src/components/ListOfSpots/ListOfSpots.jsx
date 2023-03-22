@@ -16,9 +16,13 @@ function ListOfSpots() {
         <div className='listOfSpots'>
             {spotsFromStore.map(spot => {
                 return (
-                    <div key={spot.id}>
-                        <h4>{spot.description}</h4>
-                    </div>
+                    <>
+                    {console.log(spot)}
+                        <div key={spot.id}>
+                            <h3>{spot.name}</h3>
+                            <p>Description: {spot.description}</p>
+                        </div>
+                    </>
                 )
             })}
  
