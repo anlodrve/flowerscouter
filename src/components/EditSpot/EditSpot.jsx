@@ -26,7 +26,7 @@ function EditSpot(){
     console.log('selectedSpot', selectedSpot)
 
    //set starting center location 
-   let center = useMemo(() => ({lat: selectedSpot.location?.x, lng: selectedSpot.location?.y}), [] ) ;
+   let center = useMemo(() => ({lat: selectedSpot?.location?.x, lng: selectedSpot?.location?.y}), [] ) ;
 
 //    console.log('selectedSpot x', selectedSpot.location.x)
 
