@@ -47,7 +47,18 @@ function Map() {
     const onLoad = useCallback(map => (mapRef.current = map), []);
 
     const dispatch=useDispatch(); 
-    const [selectedMarker, setSelectedMarker] = useState(null);
+    const [infoWindowOpen, setInfoWindowOpen] = useState(false);
+
+    const selectedMarker = useSelector((store) => store.infoWindowReducer)
+
+    const handleClick = (event) => {
+        // setMarkerWithInfoWindow(event.target.value)
+        dispatch ({
+            type: 'SET_MARKER_INFOWINDOW', 
+            payload: event.target.value
+        })
+        setInfoWindowOpen(true);
+    }
 
     useEffect(() => {
         dispatch({ type: 'GET_SPOTS' });
@@ -66,30 +77,36 @@ function Map() {
                     <>
                         {console.log(spotObject.location)}
                         <MarkerF 
-                            key={spotObject.id} 
+                            id={spotObject.id}
+                            value={spotObject} 
                             position={({lat: spotObject.location.x, lng: spotObject.location.y})}
-                            onClick={(spotObject) => {
-                                setSelectedMarker(spotObject);
-                                console.log('selectedMarker', selectedMarker)
-                            }}
+                            onClick={handleClick}
                             >
+                                {infoWindowOpen && (
+                                    <InfoWindow 
+                                        onCloseClick={() => setInfoWindowOpen(false)}
+                                        position={({lat: selectedMarker.location.x, lng: selectedMarker.location.y})}
+                                        >
+                                         <div>
+                                            <h3>Flower!</h3>
+                                            {/* <p></p> */}
+                                        </div>
+                                    </InfoWindow>
+                                )}
                         </MarkerF>
                     </>
                 )
             })}
 
-            {selectedMarker 
+            {/* {selectedMarker 
                 ? 
-                    (<InfoWindow
+                    (
                         key={selectedMarker.id}
-                        position={{lat: spotObject.location.x, lng: spotObject.location.y}}
+                        position={{lat: selectedMarker?.location?.x, lng: selectedMarker?.location?.y}}
                         >
-                            <div>
-                                <h3>Flower!</h3>
-                                <p></p>
-                            </div>
+                           
                     </InfoWindow>) 
-                : null}
+                : null} */}
         </GoogleMap>
     )
 }
