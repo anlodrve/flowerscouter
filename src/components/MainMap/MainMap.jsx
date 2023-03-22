@@ -63,24 +63,13 @@ function Map() {
             options={options}
             onLoad={onLoad}
         >
-            {spots.map((spotObject) => {
+            {spots.map((spotObject, i) => {
                 return (
                     <>
-                        {console.log(spotObject.location)}
-                        <Marker spotObject={spotObject}/>
+                        <Marker key={i} spotObject={spotObject}/>
                     </>
                 )
             })}
-
-            {/* {selectedMarker 
-                ? 
-                    (
-                        key={selectedMarker.id}
-                        position={{lat: selectedMarker?.location?.x, lng: selectedMarker?.location?.y}}
-                        >
-                           
-                    </InfoWindow>) 
-                : null} */}
         </GoogleMap>
     )
 }

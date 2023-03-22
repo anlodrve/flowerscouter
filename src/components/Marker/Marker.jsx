@@ -1,37 +1,30 @@
 import { useState } from "react";
 
+//google maps imports
+import { MarkerF, InfoWindowF } from "@react-google-maps/api"
+
 function Marker(spotObject) {
+    console.log('spotObject', spotObject.spotObject)
 
+    //boolean to show or hide infoWindow
     const [infoWindowOpen, setInfoWindowOpen] = useState(false);
-
-
-    const handleClick = (event) => {
-        // setMarkerWithInfoWindow(event.target.value)
-        dispatch ({
-            type: 'SET_MARKER_INFOWINDOW', 
-            payload: event.target.value
-        })
-        setInfoWindowOpen(true);
-    }
 
     return(
         <>
             <MarkerF 
-                id={spotObject.id}
-                value={spotObject} 
-                position={({lat: spotObject.location.x, lng: spotObject.location.y})}
-                onClick={handleClick}
+                id={spotObject.spotObject.id}
+                position={({lat: spotObject.spotObject.location.x, lng: spotObject.spotObject.location.y})}
+                onClick={() => setInfoWindowOpen(true)}
                 >
                     {infoWindowOpen && (
-                        <InfoWindow 
+                        <InfoWindowF 
                             onCloseClick={() => setInfoWindowOpen(false)}
-                            position={({lat: selectedMarker.location.x, lng: selectedMarker.location.y})}
+                            position={({lat: spotObject.spotObject?.location?.x, lng: spotObject.spotObject?.location?.y})}
                         >
-                            <div>
+                            
                                 <h3>Flower!</h3>
-                                {/* <p></p> */}
-                            </div>
-                        </InfoWindow>
+                              
+                        </InfoWindowF>
                      )}
             </MarkerF>
         </>
