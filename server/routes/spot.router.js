@@ -9,7 +9,11 @@ const {
 
 //get all spots
 router.get('/', (req, res) => {
-    const queryText = `SELECT * FROM "mappedPlants" ORDER BY "id" ASC`
+    const queryText = 
+        `SELECT "mappedPlants".id, "mappedPlants".location, "mappedPlants".category, 
+        "mappedPlants".description, "mappedPlants".author, "categories".name 
+        FROM "mappedPlants" 
+        JOIN "categories" ON "categories".id = "mappedPlants".category;`
     pool.query(queryText)
     .then( result => {
       res.send(result.rows);
