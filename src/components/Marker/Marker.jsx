@@ -21,9 +21,11 @@ function Marker(spotObject) {
                             onCloseClick={() => setInfoWindowOpen(false)}
                             position={({lat: spotObject.spotObject?.location?.x, lng: spotObject.spotObject?.location?.y})}
                         >
-                            
-                                <h3></h3>
-                              
+                            <>
+                                <h3>{spotObject.spotObject.name}</h3>
+                                <p>{spotObject.spotObject.location.x}, {spotObject.spotObject.location.y}</p>
+                                <p>{spotObject.spotObject.description}</p>
+                            </>
                         </InfoWindowF>
                      )}
             </MarkerF>

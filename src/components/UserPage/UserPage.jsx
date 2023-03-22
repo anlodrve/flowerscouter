@@ -21,6 +21,7 @@ function UserPage() {
 
   const user = useSelector((store) => store.user);
   const spots = useSelector(store => store.spots);
+  console.log(spots)
 
   const handleDelete = (event) => {
       event.preventDefault();
@@ -61,6 +62,7 @@ function UserPage() {
             {spots.map((spotObject) => {
               return (
                 <div key={spotObject.id}>
+                    <h4>{spotObject.name}</h4>
                     <p>{spotObject.description}</p>
                     <p>{spotObject.location.x}</p>
                     <p>{spotObject.location.y}</p>

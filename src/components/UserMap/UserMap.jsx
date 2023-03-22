@@ -4,6 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 //google maps import
 import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api"
 
+//import Marker component
+import Marker from "../Marker/Marker";
+
 
 
 const UserMap = () => {
@@ -64,7 +67,8 @@ function Map() {
                 return (
                     <>
                     {console.log(spotObject.location)}
-                    <MarkerF key={spotObject.id} position={({lat: spotObject.location.x, lng: spotObject.location.y})}></MarkerF>
+                    {/* <MarkerF key={spotObject.id} position={({lat: spotObject.location.x, lng: spotObject.location.y})}></MarkerF> */}
+                    <Marker spotObject={spotObject}/>
                     </>
                 )
             })}
