@@ -91,15 +91,15 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  const queryText = `UPDATE "mappedPlants" SET "description" = $1, "location" = $2 WHERE "id" = $3`
-  const queryParams = [req.body.description, req.body.location, req.params.id]
+  const queryText = `UPDATE "mappedPlants" SET "description" = $1, "location" = POINT ($2, $3) WHERE "id" = $4`
+  const queryParams = [req.body.description, req.body.location.x, req.body.location.y, req.params.id]
 
   pool.query(queryText, queryParams)
 		.then((result) => {
 			res.sendStatus(204);
 		})
 		.catch((error) => {
-			console.log("Delete failed in server", error);
+			console.log("Put failed in server", error);
 		});
 })
 

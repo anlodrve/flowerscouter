@@ -64,9 +64,7 @@ function EditSpot(){
 
         history.push('/user');
     }
-    
-    // const [newLocation, setNewLocation] = useState([selectedSpot]) 
-    
+        
     // if(!selectedSpot.location){
     //     return <div>Loading...</div>
     // }
@@ -86,7 +84,6 @@ function EditSpot(){
                         onLoad={onLoad}
                         onClick={(event) => handleClick(event, 'location')}
                         >
-
                                 
                         <MarkerF key={selectedSpot.id} position={{lat: selectedSpot?.location?.x, lng: selectedSpot?.location?.y}}/>
                                 
