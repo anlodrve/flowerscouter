@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
   spots, //all spots on the map
   location, //location data from LocationMap
   categories, //categories from database
-  edit, //holds all the updates
+  edit, //holds all the updates to existing spots
 });
 
 export default rootReducer;
