@@ -51,7 +51,6 @@ function UserPage() {
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
       <div id="ternary">
         {spots.length > 0
           ? (
