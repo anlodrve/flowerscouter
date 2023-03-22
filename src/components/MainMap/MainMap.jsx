@@ -2,10 +2,13 @@ import React, { useMemo, useRef, useCallback, useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux";
 
 //google maps import
-import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api"
+import { GoogleMap, useJsApiLoader, MarkerF, InfoWindow } from "@react-google-maps/api"
 
 //import css
 import "./MainMap.css"
+
+//import Marker custom component
+import Marker from "../Marker/Marker";
 
 const MainMap = () => {
     const { isLoaded } = useJsApiLoader({
@@ -51,6 +54,7 @@ function Map() {
         }), []
     ); 
 
+    // const selectedMarker = useSelector((store) => store.infoWindowReducer)
     useEffect(() => {
         //get user current location
         navigator.geolocation.getCurrentPosition(
@@ -68,13 +72,11 @@ function Map() {
             mapContainerClassName="map-container"
             options={options}
             onLoad={onLoad}
-            // onClick={(event) => handleClick(event)}
         >
-            {spots.map((spotObject) => {
+            {spots.map((spotObject, i) => {
                 return (
                     <>
-                    {console.log(spotObject.location)}
-                    <MarkerF key={spotObject.id} position={({lat: spotObject.location.x, lng: spotObject.location.y})}></MarkerF>
+                        <Marker key={i} spotObject={spotObject}/>
                     </>
                 )
             // {spots.map(spot.category => )}
