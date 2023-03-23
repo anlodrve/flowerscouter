@@ -53,7 +53,7 @@ function AddSpot () {
                 <select className='catDropDown' onChange={(event) => handleChange(event, 'category')}>
                     {categoriesFromStore.map((categoryObject) => (
                         <option key={categoryObject.id} value={categoryObject.id}>
-                            {categoryObject.category}
+                            {categoryObject.name}
                         </option>
                     ))}
                 </select>

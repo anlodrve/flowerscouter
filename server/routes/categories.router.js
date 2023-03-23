@@ -5,7 +5,7 @@ const router = express.Router();
 //import authentication middleware
 const {rejectUnauthenticated,} = require(`../modules/authentication-middleware`);
 
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     const queryText = 
         `SELECT * FROM "categories" ORDER BY "name" ASC`;
 
