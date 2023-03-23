@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react'; 
 import { useDispatch, useSelector } from 'react-redux';
 
+//mui imports
+import { Box, Card, CardContent, Typography } from '@mui/material'
+
 
 function ListOfSpots() {
 
@@ -18,10 +21,23 @@ function ListOfSpots() {
                 return (
                     <>
                     {console.log(spot)}
-                        <div key={spot.id}>
-                            <h3>{spot.name}</h3>
-                            <p>Description: {spot.description}</p>
-                        </div>
+                        <Box 
+                            key={spot.id}
+                            width='300px'>
+                            <Card>
+                                <CardContent>
+                                    <Typography gutterBottom variant='h5' component='div'>
+                                    {spot.name}
+                                    </Typography>
+                                    <Typography variant='body2' color='text.secondary'>
+                                        Description: {spot.description}
+                                       
+
+                                    </Typography>
+
+                                </CardContent>
+                            </Card>
+                        </Box>
                     </>
                 )
             })}
