@@ -52,6 +52,11 @@ function Map() {
         }), []
     ); 
 
+    const containerStyle = { 
+        width: '350px',
+        height: '350px'
+    }
+
     useEffect(() => {
         //get user current location
         navigator.geolocation.getCurrentPosition(
@@ -66,7 +71,8 @@ function Map() {
         <GoogleMap
             zoom={15} 
             center={center} 
-            mapContainerClassName="map-container"
+            mapContainerStyle={containerStyle}
+            mapContainerClassStyle="map-container"
             options={options}
             onLoad={onLoad}
         >
