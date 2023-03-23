@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 //mui imports
-import { Box, Card, CardContent, Typography } from '@mui/material'
+import { Box, Card, CardContent, Typography, CardActions, Button, CardMedia } from '@mui/material'
 
 
 function ListOfSpots() {
@@ -25,17 +25,24 @@ function ListOfSpots() {
                             key={spot.id}
                             width='300px'>
                             <Card>
+                                <CardMedia 
+                                    component='img'
+                                    height='50'
+                                    image='https://source.unsplash.com/random'
+                                    alt='flower image'
+                                />
                                 <CardContent>
                                     <Typography gutterBottom variant='h5' component='div'>
                                     {spot.name}
                                     </Typography>
                                     <Typography variant='body2' color='text.secondary'>
                                         Description: {spot.description}
-                                       
-
                                     </Typography>
-
                                 </CardContent>
+                                <CardActions >
+                                    <Button size='small'>Like</Button>
+                                    <Button size='small'>Comments</Button> 
+                                </CardActions>
                             </Card>
                         </Box>
                     </>

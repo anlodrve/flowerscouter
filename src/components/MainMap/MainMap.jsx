@@ -41,10 +41,8 @@ function Map() {
     const onLoad = useCallback(map => (mapRef.current = map), []);
     const dispatch=useDispatch(); 
 
+    //set center
     const center = {lat: centerLat, lng: centerLng}
-
-    //useMemo(() => (), [] ) ;
-    // former center {lat: 44.94, lng: -93.25}
 
   //customization 
     const options = useMemo(
@@ -54,7 +52,6 @@ function Map() {
         }), []
     ); 
 
-    // const selectedMarker = useSelector((store) => store.infoWindowReducer)
     useEffect(() => {
         //get user current location
         navigator.geolocation.getCurrentPosition(
