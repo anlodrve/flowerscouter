@@ -34,17 +34,6 @@ function UserPage() {
       });
   };
 
-//   const handleEdit = (event) => {
-//     event.preventDefault();
-
-//     const id = event.target.value;
-
-//     dispatch({
-//       type: "EDIT_SPOT",
-//       payload: id,
-//     });
-// };
-
   const handleAdd = () => {
     history.push("/add");
 }
