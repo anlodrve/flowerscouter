@@ -9,6 +9,7 @@ import { useHistory } from 'react-router-dom';
 //import UserMap
 import UserMap from '../UserMap/UserMap';
 
+
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   // const spotsFromStore = useSelector(store => store.spots);
@@ -38,7 +39,7 @@ function UserPage() {
     history.push("/add");
 }
   return (
-    <div className="container">
+    <Box width='385px'>
       <h2>Welcome, {user.username}!</h2>
       <div id="ternary">
         {spots.length > 0
@@ -100,7 +101,7 @@ function UserPage() {
               <Button  variant='contained' id="addSpot" onClick={handleAdd}>Add a Spot</Button>
             </>)}
         </div>
-    </div>
+    </Box>
   );
 }
 

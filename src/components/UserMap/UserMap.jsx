@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useCallback, useState, useEffect } from "react";
+import React, { useMemo, useRef, useCallback, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 //google maps import
@@ -7,6 +7,8 @@ import { GoogleMap, useJsApiLoader } from "@react-google-maps/api"
 //import Marker component
 import Marker from "../Marker/Marker";
 
+//import mui
+import { Box } from "@mui/material";
 
 
 const UserMap = () => {
@@ -20,11 +22,16 @@ const UserMap = () => {
 
   //return the component Map created below 
   return (
-    <div className="userMapOuterContainer">
-        <div className="userMapInnerContainer">
-          <Map />
-        </div>
-    </div>
+    <Box  
+      sx={{
+        width: 390,
+        mr: 'auto',
+        ml: '20px',
+        my: '20px'
+        }}
+    >
+      <Map />
+    </Box>
   )
 }
 
@@ -34,20 +41,26 @@ function Map() {
     const spots = useSelector((store) => store.spots)
     const mapRef = useRef(); 
 
-    //eventually want this center to be determined by current user geolocation 
     //useMemo performs the calculation once everytime the array arg changes, reuse the same value every time it re-renders
     const center = useMemo(() => ({lat: spots[0].location.x, lng: spots[0].location.y}), [] ) ;
+
+    const onLoad = useCallback(map => (mapRef.current = map), []);
+    const dispatch=useDispatch(); 
 
   //customization 
     const options = useMemo(
         () => ({
-        // disableDefaultUI: true,
-        clickableIcons: false,
+        disableDefaultUI: true,
+        // clickableIcons: false,
         }), []
     ); 
 
-    const onLoad = useCallback(map => (mapRef.current = map), []);
-    const dispatch=useDispatch(); 
+    const containerStyle = { 
+      width: '350px',
+      height: '350px', 
+      leftMargin: '20px',
+      rightMargin: '20px'
+  }
 
     useEffect(() => {
         dispatch({ type: "GET_SPOTS_BY_ID", payload: user.id });
@@ -57,10 +70,9 @@ function Map() {
         <GoogleMap
             zoom={15} 
             center={center} 
-            mapContainerClassName="map-container"
+            mapContainerStyle={containerStyle}
             options={options}
             onLoad={onLoad}
-            // onClick={(event) => handleClick(event)}
         >
             {spots.map((spotObject) => {
                 return (

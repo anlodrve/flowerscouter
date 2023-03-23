@@ -11,13 +11,15 @@ const {
 router.get('/', (req, res) => {
     const queryText = 
         `SELECT "mappedPlants".id, "mappedPlants".location, "mappedPlants".category, 
-        "mappedPlants".description, "mappedPlants".author, "categories".name, json_agg("comments") AS "comments", "user".username 
+        "mappedPlants".description, "mappedPlants".author, "categories".name, 
+        COALESCE(json_agg("comments") FILTER (WHERE "comments"."commentText" IS NOT NULL), '[]') AS "comments", 
+        "user".username 
         FROM "mappedPlants" 
         LEFT JOIN "categories" ON "categories".id = "mappedPlants".category
         LEFT JOIN "comments" ON "comments"."postId" = "mappedPlants".id
         LEFT JOIN "user" ON "user".id = "comments"."authorId"
         GROUP BY "mappedPlants".id, "categories".name, "user".username
-        ORDER BY "mappedPlants".id DESC;`
+        ORDER BY "mappedPlants".id DESC`
     pool.query(queryText)
     .then( result => {
       res.send(result.rows);

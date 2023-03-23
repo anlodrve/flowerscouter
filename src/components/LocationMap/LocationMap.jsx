@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 //imports from google maps
 import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api"
 
+import { Box } from "@mui/material";
+
 //import css
 import "./LocationMap.css"
 
@@ -18,9 +20,16 @@ function LocationMap(){
   
       //return the component Map created below 
       return (
-            <div className="map">
-              <Map />
-            </div>
+        <Box  
+          sx={{
+              width: 390,
+              mr: 'auto',
+              ml: '20px',
+              my: '20px'
+              }}
+        >
+           <Map />
+        </Box>
       )
   }
   
@@ -58,6 +67,13 @@ function Map() {
         })
     }
 
+    const containerStyle = { 
+      width: '350px',
+      height: '350px', 
+      leftMargin: '20px',
+      rightMargin: '20px'
+  }
+
     const onLoad = useCallback(map => (mapRef.current = map), []);
   
     //functional component GoogleMap from above - takes three props
@@ -66,7 +82,7 @@ function Map() {
       <GoogleMap 
           zoom={18} 
           center={center} 
-          mapContainerClassName="map-container"
+          mapContainerStyle={containerStyle}
           options={options}
           onLoad={onLoad}
           onClick={(event) => handleClick(event)}

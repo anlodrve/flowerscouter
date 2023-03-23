@@ -2,7 +2,9 @@ import React, { useMemo, useRef, useCallback, useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux";
 
 //google maps import
-import { GoogleMap, useJsApiLoader, MarkerF, InfoWindow } from "@react-google-maps/api"
+import { GoogleMap, useJsApiLoader} from "@react-google-maps/api"
+
+import { Box } from "@mui/material";
 
 //import css
 import "./MainMap.css"
@@ -21,11 +23,17 @@ const MainMap = () => {
 
   //return the component Map created below 
   return (
-    <div className="mainMapOuterContainer">
-        <div className="mainMapInnerContainer">
+        <Box  
+            sx={{
+                width: 390,
+                mr: 'auto',
+                ml: '20px',
+                my: '20px'
+                }}
+        >
           <Map />
-        </div>
-    </div>
+        </Box>
+  
   )}
 
 //Map is called in the return of MainMap 
@@ -54,7 +62,9 @@ function Map() {
 
     const containerStyle = { 
         width: '350px',
-        height: '350px'
+        height: '350px', 
+        leftMargin: '20px',
+        rightMargin: '20px'
     }
 
     useEffect(() => {

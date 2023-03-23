@@ -51,32 +51,33 @@ function AddSpot () {
                 <Stack direction='row' spacing={0}>
                     <TextField label='Description' variant='outlined'></TextField>
                     <FormHelperText>Describe where to view this plant - i.e. "When facing the house, it is to the left of the front door by the pine tree"</FormHelperText>
+                    <Box>
+                        <FormControl required sx={{ m: 1, minWidth: 120 }}>
+                            <InputLabel id="selectCategory">Category</InputLabel>
+                                <Select
+                                    labelId="selectCategory"
+                                    id="selectCategory"
+                                    value = {newSpot.category}
+                                    label="Category *"
+                                    onChange={(event) => handleChange(event, 'category')}
+                                >
+                                    {categoriesFromStore.map((categoryObject) => (
+                                        <MenuItem 
+                                            key={categoryObject.id} 
+                                            value={categoryObject.id}
+                                        >
+                                            {categoryObject.name}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            <FormHelperText>Required</FormHelperText>
+                        </FormControl>
+                    </Box>
                 </Stack>
                 <Stack direction='row' spacing={0}>
                 </Stack>
             </Stack>
-            <Box>
-                <FormControl required sx={{ m: 1, minWidth: 120 }}>
-                    <InputLabel id="selectCategory">Category</InputLabel>
-                        <Select
-                            labelId="selectCategory"
-                            id="selectCategory"
-                            value = {newSpot.category}
-                            label="Category *"
-                            onChange={(event) => handleChange(event, 'category')}
-                        >
-                            {categoriesFromStore.map((categoryObject) => (
-                                <MenuItem 
-                                    key={categoryObject.id} 
-                                    value={categoryObject.id}
-                                >
-                                    {categoryObject.name}
-                                </MenuItem>
-                            ))}
-                        </Select>
-                    <FormHelperText>Required</FormHelperText>
-                </FormControl>
-            </Box>
+            
             <Button type="submit" variant='contained'>
                 Submit
             </Button>
