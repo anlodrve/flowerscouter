@@ -4,6 +4,8 @@ import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import spotSaga from './spot.saga';
 import categoriesSaga from './categories.saga';
+import commentSaga from './comment.saga';
+
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -19,5 +21,6 @@ export default function* rootSaga() {
     userSaga(),
     spotSaga(), 
     categoriesSaga(), 
+    commentSaga(), 
   ]);
 }

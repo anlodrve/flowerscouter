@@ -45,6 +45,7 @@ function ListOfSpots() {
                                 </CardActions>
                             </Card>
                         </Box>
+                        
                     </>
                 )
             })}
