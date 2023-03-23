@@ -77,9 +77,9 @@ function Map() {
         >
             {spots.map((spotObject, i) => {
                 return (
-                    <>
+                    
                         <Marker key={i} spotObject={spotObject}/>
-                    </>
+                
                 )
             // {spots.map(spot.category => )}
             })}

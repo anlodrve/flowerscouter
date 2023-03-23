@@ -16,7 +16,7 @@ function Marker({spotObject}) {
 
     //boolean to show or hide infoWindow
     const [infoWindowOpen, setInfoWindowOpen] = useState(false);
-
+    console.log('spotObhect', spotObject)
     return(
         <>
 
@@ -33,7 +33,10 @@ function Marker({spotObject}) {
                             spotObject.category == 5 ? iris :
                             spotObject.category == 6 ? sunflower :
                             ''
-                        }`)}}
+                        }`),
+                        scaledSize: { width: 95, height: 95},
+                        anchor: {x: 45, y: 45}
+                    }}
                         >
                             {infoWindowOpen && (
                                 <InfoWindowF 
