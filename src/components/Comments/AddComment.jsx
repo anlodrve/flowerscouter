@@ -53,3 +53,5 @@ function AddComment({ postId }) {
     )
 
 }
+
+export default AddComment; 

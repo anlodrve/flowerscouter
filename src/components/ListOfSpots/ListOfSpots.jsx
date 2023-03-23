@@ -49,6 +49,7 @@ function ListOfSpots() {
                             </Card>
                         </Box>
                         <CommentList comments={spot.comments} username={spot.username}/>
+                        <AddComment postId={spot.id}/>
                     </>
                 )
             })}
