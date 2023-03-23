@@ -1,5 +1,5 @@
 //mui imports
-import { Button } from '@mui/material'
+import { Box, Card, CardContent, Typography, CardActions, Button } from '@mui/material'
 
 //react imports
 import React, { useEffect } from 'react';
@@ -49,24 +49,49 @@ function UserPage() {
             <ul>
             {spots.map((spotObject) => {
               return (
-                <div key={spotObject.id}>
-                    <h4>{spotObject.name}</h4>
-                    <p>{spotObject.description}</p>
-                    <p>{spotObject.location.x}</p>
-                    <p>{spotObject.location.y}</p>
+                <Box 
+                  key={spotObject.id}
+                  width='300px'>
+                    <Typography
+                      variant='h5' 
+                      component='div'
+                      >
+                        {spotObject.name}
+                      </Typography>
+                      <Typography 
+                        variant='body2' 
+                        color='text.secondary'
+                        >
+                          Description: {spotObject.description}
+                      </Typography>
+                      <Typography 
+                        variant='body2' 
+                        color='text.secondary'
+                        >
+                          {spotObject.location.x}, {spotObject.location.y}          
+                      </Typography>
 
                     {user.id === spotObject.author && (
                       <>
-                      <Button variant='contained' className="deleteButton" value={spotObject.id} onClick={handleDelete}>
-                        Delete
-                      </Button>
-                       <Button className="editButton" value={spotObject.id} onClick={() => history.push(`/edit/${spotObject.id}`)}
-                      >
-                        Edit
-                      </Button>
+
+                        <Button 
+                          size='small' 
+                          variant='contained' 
+                          className="deleteButton" 
+                          value={spotObject.id} 
+                          onClick={handleDelete}>
+                          Delete
+                        </Button>
+                        <Button 
+                          size='small' 
+                          value={spotObject.id} 
+                          onClick={() => history.push(`/edit/${spotObject.id}`)}
+                        >
+                          Edit
+                        </Button>
                      </>
                     )}
-                </div>)
+                </Box>)
                 })}
               </ul>
             </>)
