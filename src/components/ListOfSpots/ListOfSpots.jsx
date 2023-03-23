@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 //mui imports
 import { Box, Card, CardContent, Typography, CardActions, Button, CardMedia } from '@mui/material'
 
+//import comments
+import CommentList from '../Comments/CommentList';
+import AddComment from '../Comments/AddComment';
 
 function ListOfSpots() {
 
@@ -45,7 +48,7 @@ function ListOfSpots() {
                                 </CardActions>
                             </Card>
                         </Box>
-                        
+                        <CommentList comments={spot.comments} username={spot.username}/>
                     </>
                 )
             })}
