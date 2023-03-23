@@ -72,7 +72,6 @@ function Map() {
             zoom={15} 
             center={center} 
             mapContainerStyle={containerStyle}
-            mapContainerClassStyle="map-container"
             options={options}
             onLoad={onLoad}
         >
