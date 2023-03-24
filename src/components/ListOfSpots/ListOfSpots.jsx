@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 //mui imports
 import { Box, Card, CardContent, Typography, CardActions, Button, CardMedia } from '@mui/material'
+import { Favorite, FavoriteBorder } from '@mui/icons-material'
 
 //import comments
 import CommentList from '../Comments/CommentList';
@@ -39,6 +40,9 @@ function ListOfSpots() {
                                     image='https://source.unsplash.com/random'
                                     alt='flower image'
                                 />
+                                <CardActions >
+                                    <Button size='small'>Like</Button>
+                                </CardActions>
                                 <CardContent>
                                     <Typography gutterBottom variant='h5' component='div'>
                                     {spot.name}
@@ -50,10 +54,6 @@ function ListOfSpots() {
                                         Submitted By: {spot.username}
                                     </Typography>
                                 </CardContent>
-                                <CardActions >
-                                    <Button size='small'>Like</Button>
-                                    <Button size='small'>Comments</Button> 
-                                </CardActions>
                                 <CommentList comments={spot.comments} username={spot.username} postId={spot.id}/>
                             </Card>
                         </Box>
