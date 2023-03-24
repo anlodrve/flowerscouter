@@ -1,5 +1,4 @@
 To Do: 
-    [] update add spot map to center on geolocation
     [] move like button to the right of card
     [] fix add spot form styling 
     [] toggle button for map vs list of spots 
@@ -7,8 +6,7 @@ To Do:
     [] ask dane about adding a spinny wheel 
     [] make a custom mui theme 
     [] add links to nav bar 
-    [] STYLING 
-    [] filter plants on map by category (category ID?)
+    [] STRETCH filter plants on map by category (category ID?)
     [] STRETCH: show the address of the spot with reverse 
     geocaching 
     [] Readme!!!!
@@ -16,6 +14,8 @@ To Do:
 
     Done
         [x] add comments
+            [x] update add spot map to center on geolocation
+
         [x] shift to mobile view
         [x] update AddSpot to be MUI 
         [x] look up what other "options" props exist for googlemaps
