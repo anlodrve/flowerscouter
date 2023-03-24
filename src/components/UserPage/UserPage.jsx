@@ -24,7 +24,7 @@ function UserPage() {
 
   const user = useSelector((store) => store.user);
   const spots = useSelector(store => store.spots);
-  console.log(spots)
+  console.log('spots by user',spots)
 
   const handleDelete = (event) => {
       event.preventDefault();

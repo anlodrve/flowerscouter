@@ -21,7 +21,6 @@ function EditSpot() {
         dispatch({ type: "SELECT_SPOT", payload: id });
         //get all the categories 
         dispatch({ type: "GET_CATEGORIES" });
-
     }, [])
 
     const selectedSpot = useSelector((store) => store.edit);
@@ -86,6 +85,10 @@ function EditSpot() {
     return (
         <div>
             <h2>Edit Post</h2>
+            { !selectedSpot && ( 
+                <h4>Loading...</h4>
+            )}
+            { selectedSpot && (
             <form id="editSpotForm" onSubmit={handleSubmit}>
                 <Box    sx={{
                 width: 390,
@@ -100,10 +103,7 @@ function EditSpot() {
                         onLoad={onLoad}
                         onClick={(event) => handleClick(event, 'location')}
                     >
-
                         <MarkerF key={selectedSpot.id} position={{ lat: selectedSpot?.location?.x, lng: selectedSpot?.location?.y }} />
-
-
                     </GoogleMap>
                 </Box>
                 <TextField
@@ -123,7 +123,7 @@ function EditSpot() {
                         >
                             Save Changes
                         </Button>
-            </form>
+            </form> )}
         </div>
 
     )
