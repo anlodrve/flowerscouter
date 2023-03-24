@@ -6,15 +6,48 @@
 
   .linkInDrawer{
     margin-left: 20px;
+    font-size: 18px;
   }
-  
-  .navLink {
-    color: #ff8484;
-    text-align: left;
+
+  #addLink{
     margin-left: 20px;
-    /* padding: 24px 10px; */
+  }
+
+  #userLink{
+    margin-left: 20px;
+  }
+
+  #spotLink{
+    margin-left: 20px;
+  }
+
+  .linkInDrawer:link {
     text-decoration: none;
-    font-size: 15px;
+    color: rgb(181, 108, 19)
+}
+
+.linkInDrawer:visited {
+    text-decoration: none;
+    color: rgb(181, 108, 19)
+}
+
+.linkInDrawer:hover {
+    text-decoration: none;
+    color: rgb(181, 108, 19)
+}
+
+.linkInDrawer:active {
+    text-decoration: none;
+    color: rgb(181, 108, 19)
+}
+
+  .navLink {
+    color: rgb(181, 108, 19);
+    text-align: left;
+    padding-top: 2px; 
+    margin-left: 20px;
+    font-weight: normal;
+    font-size: 18px;
     /* these last two make the logout button in
     the nav bar look like another link */
     border: none;

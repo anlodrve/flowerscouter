@@ -64,7 +64,7 @@ function DrawerNav() {
 
                             <Link 
                                 to="/add" 
-                                
+                                id='addLink'
                                 className="linkInDrawer"
                                 onClick={() => setDrawerOpen(false)}
                                 underline="none"
@@ -74,6 +74,7 @@ function DrawerNav() {
 
                             <Link 
                                 to="/list" 
+                                id='spotLink'
                                 className="linkInDrawer"
                                 onClick={() => setDrawerOpen(false)}
                                 underline="none"
@@ -84,6 +85,7 @@ function DrawerNav() {
                             <Link 
                                 to="/user" 
                                 className="linkInDrawer"
+                                id='userLink'
                                 onClick={() => setDrawerOpen(false)}
                                 underline="none"
                                >
