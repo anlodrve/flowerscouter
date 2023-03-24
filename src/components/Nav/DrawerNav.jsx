@@ -45,7 +45,7 @@ function DrawerNav() {
                     {/* If no user is logged in, show these links */}
                     {!user.id && (
                         // If there's no user, show login/registration links
-                        <Link href="/login" onClick={() => setDrawerOpen(false)}>
+                        <Link to="/login" onClick={() => setDrawerOpen(false)}>
                              🌺 Login / Register
                         </Link>
                     )}
@@ -55,41 +55,38 @@ function DrawerNav() {
                         <>
                             <Link 
                                 to="/home" 
+                                className="linkInDrawer"
                                 onClick={() => setDrawerOpen(false)}
                                 underline="none"
-                                sx={{
-                                    ml: '20px'
-                                }}>
+                               >
                                 🌷 Home
                             </Link>
 
                             <Link 
                                 to="/add" 
+                                
+                                className="linkInDrawer"
                                 onClick={() => setDrawerOpen(false)}
                                 underline="none"
-                                sx={{
-                                    ml:'20px'
-                                }}>
+                                >
                                 🌼 Add a Spot!
                             </Link>
 
                             <Link 
                                 to="/list" 
+                                className="linkInDrawer"
                                 onClick={() => setDrawerOpen(false)}
                                 underline="none"
-                                sx={{
-                                    ml: '20px'
-                                }}>
+                               >
                                 🌹 List of Spots
                             </Link>
 
                             <Link 
                                 to="/user" 
+                                className="linkInDrawer"
                                 onClick={() => setDrawerOpen(false)}
                                 underline="none"
-                                sx={{
-                                    ml: '20px'
-                                }}>
+                               >
                                 🌻 Your Spots
                             </Link>
 
