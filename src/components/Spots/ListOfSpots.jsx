@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'; 
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 //mui imports
-import { Box, Card, CardContent, Typography, CardActions, Button, CardMedia } from '@mui/material'
+import { Box, Card, CardContent, Typography, CardActions, IconButton, CardMedia } from '@mui/material'
 import { Favorite, FavoriteBorder } from '@mui/icons-material'
 
 //import comments
@@ -14,6 +14,8 @@ function ListOfSpots() {
     const spotsFromStore = useSelector(store => store.spots)
     console.log('spots', spotsFromStore)
 
+    const [isLiked, setIsLiked] = useState(false)
+
     //load all spots from the list on page load
     useEffect(() => {
         dispatch({ type: 'GET_SPOTS' });
@@ -24,28 +26,37 @@ function ListOfSpots() {
             {spotsFromStore.map(spot => {
                 return (
                     <>
-                    {console.log(spot)}
-                        <Box 
+                        {console.log(spot)}
+                        <Box
                             key={spot.id}
                             width='350px'
                             pl='20px'>
                             <Card
                                 sx={{
-                                    mb:'20px'
+                                    mb: '20px'
                                 }}
-                                >
-                                <CardMedia 
+                            >
+                                <CardMedia
                                     component='img'
                                     height='50'
                                     image='https://source.unsplash.com/random'
                                     alt='flower image'
                                 />
                                 <CardActions >
-                                    <Button size='small'>Like</Button>
+                                    {isLiked === true ? (
+                                        <IconButton color="primary" aria-label="like button" onClick={() => setIsLiked(false)}>
+                                            <Favorite />
+                                        </IconButton>
+                                    ):(
+                                        <IconButton color="primary" aria-label="not yet liked button" onClick={() =>setIsLiked(true)}>
+                                            <FavoriteBorder />
+                                        </IconButton>
+                                    )}
+                                    {/* <Button size='small'>Like</Button> */}
                                 </CardActions>
                                 <CardContent>
                                     <Typography gutterBottom variant='h5' component='div'>
-                                    {spot.name}
+                                        {spot.name}
                                     </Typography>
                                     <Typography variant='body1' color='text.secondary'>
                                         Description: {spot.description}
@@ -54,13 +65,13 @@ function ListOfSpots() {
                                         Submitted By: {spot.username}
                                     </Typography>
                                 </CardContent>
-                                <CommentList comments={spot.comments} username={spot.username} postId={spot.id}/>
+                                <CommentList comments={spot.comments} username={spot.username} postId={spot.id} />
                             </Card>
                         </Box>
                     </>
                 )
             })}
- 
+
         </div>
     )
 

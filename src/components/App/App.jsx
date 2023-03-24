@@ -16,7 +16,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AddSpot from '../AddSpot/AddSpot';
 import AppBarNav from '../Nav/AppBar';
-import ListOfSpots from '../ListOfSpots/ListOfSpots';
+import ListOfSpots from '../Spots/ListOfSpots';
 import EditSpot from '../EditSpot/EditSpot';
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
