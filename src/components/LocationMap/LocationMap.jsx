@@ -43,7 +43,7 @@ function Map() {
      const [centerLng, setCenterLng] = useState(0) 
   
     //useMemo performs the calculation once everytime the array arg changes, reuse the same value every time it re-renders
-    const center = useMemo(() => ({lat: centerLat, lng: centerLng}), [] ) ;
+    const center = useMemo(() => ({lat: centerLat, lng: centerLng}), [centerLat, centerLng] ) ;
 
     useEffect(() => {
       //get user current location and set center as geolocation
