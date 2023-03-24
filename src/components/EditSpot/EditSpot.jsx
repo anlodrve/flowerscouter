@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api"
 
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Box } from "@mui/material";
 
 
 function EditSpot() {
@@ -35,6 +35,9 @@ function EditSpot() {
     const { isLoaded } = useJsApiLoader({
         googleMapsApiKey: process.env.REACT_APP_API_KEY,
     })
+
+    if (!isLoaded) { return <div>Loading...</div> };
+
 
     console.log('selectedSpot:', selectedSpot)
 
@@ -72,17 +75,28 @@ function EditSpot() {
     //     return <div>Loading...</div>
     // }
 
-    if (!isLoaded) { return <div>Loading...</div> };
+
+    const containerStyle = {
+        width: '350px',
+        height: '350px',
+        leftMargin: '20px',
+        rightMargin: '20px'
+    }
 
     return (
         <div>
             <h2>Edit Post</h2>
             <form id="editSpotForm" onSubmit={handleSubmit}>
-                <div className="mapContainer">
+                <Box    sx={{
+                width: 390,
+                mr: 'auto',
+                ml: '20px',
+                my: '20px'
+            }}>
                     <GoogleMap
                         zoom={17}
                         center={center}
-                        mapContainerClassName="map-container"
+                        mapContainerStyle={containerStyle}
                         onLoad={onLoad}
                         onClick={(event) => handleClick(event, 'location')}
                     >
@@ -91,7 +105,7 @@ function EditSpot() {
 
 
                     </GoogleMap>
-                </div>
+                </Box>
                 <TextField
                     label='Description'
                     variant='outlined'
@@ -109,13 +123,6 @@ function EditSpot() {
                         >
                             Save Changes
                         </Button>
-                {/* <textarea
-                label='Description' 
-                type="textarea" 
-                value={selectedSpot.description}
-                onChange={(event) => handleChange(event, 'description')}>
-                </textarea> */}
-                {/* <button type="submit">Save Changes</button> */}
             </form>
         </div>
 
