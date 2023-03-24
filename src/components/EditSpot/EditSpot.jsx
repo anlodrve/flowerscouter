@@ -78,7 +78,7 @@ function EditSpot(){
             <form id="editSpotForm" onSubmit={handleSubmit}>
             <div className="mapContainer">
                 <GoogleMap
-                        zoom={15} 
+                        zoom={17} 
                         center={center} 
                         mapContainerClassName="map-container"
                         onLoad={onLoad}

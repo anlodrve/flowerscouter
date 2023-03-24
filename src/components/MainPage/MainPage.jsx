@@ -3,14 +3,15 @@ import MainMap from '../MainMap/MainMap';
 import { useHistory } from 'react-router-dom';
 
 //mui imports
-import { Box, Typography, Button, } from '@mui/material'
+import { Box, Typography, Button, IconButton } from '@mui/material'
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 
 
 function HomePage() {
-  const history = useHistory(); 
+  const history = useHistory();
 
   const handleAdd = () => {
-      history.push("/add");
+    history.push("/add");
   }
 
   const handleList = () => {
@@ -18,18 +19,46 @@ function HomePage() {
   }
 
   return (
-    <Box 
+    <Box
       width='350px'
     >
       <Typography
         align='center'
-        variant='h4'
-        >
-          Home Page
+        variant='h5'
+        sx={{
+          ml:'20px'
+        }}
+      >
+        Home Page
       </Typography>
+      <Button
+        variant='outlined'
+        id="toList"
+        onClick={handleList}
+        sx={{
+          mt: '20px',
+          mb: '15px',
+          ml: '130px',
+          px: '20px'
+        }}
+        >
+          List View
+      </Button>
       <MainMap />
-      <Button variant='contained' id="addSpot" onClick={handleAdd}>Add a Spot</Button>
-      <Button variant='contained' id="toList" onClick={handleList}>List of Spots</Button>
+   
+      <Button
+        variant='contained'
+        id="addSpot"
+        onClick={handleAdd}
+        startIcon={<AddLocationAltIcon />}
+        sx={{
+          mt: '15px',
+          ml: '120px',
+        }}
+      >
+          Add A Spot
+      </Button>
+
     </Box>
   );
 }

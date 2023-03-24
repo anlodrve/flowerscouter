@@ -27,7 +27,15 @@ function DrawerNav() {
 
     return (
         <>
-            <IconButton size='large' edge='start' color='inherit' aria-label='logo' onClick={() => setDrawerOpen(true)}>
+            <IconButton 
+                size='large' 
+                edge='start' 
+                color='inherit' 
+                aria-label='logo' 
+                onClick={() => setDrawerOpen(true)}
+                sx={{
+                    ml: '7px'
+                }}>
                 <MenuIcon />
             </IconButton>
             <Drawer
@@ -35,7 +43,7 @@ function DrawerNav() {
                 open={isDrawerOpen}
                 onClose={() => setDrawerOpen(false)}>
                 <Box p={2} width={250} textalign='center' role='presentation'>
-                    <Typography variant='h6' component='div' fontFamily={'Angel'}>
+                    <Typography variant='h5' component='div' fontFamily={'Angel'} sx={{fontSize:'27px'}}>
                         🌸 Flower Scouter 🌸
                     </Typography>
                 </Box>

@@ -1,11 +1,11 @@
 import { Accordion, AccordionSummary, AccordionDetails, Typography, Box } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-
+import { useSelector } from "react-redux";
 import AddComment from "./AddComment";
 
-function CommentList({ comments, username, postId }) {
+function CommentList({ comments, postId }) {
     console.log('comments array??', comments)
-
+    const commentAuthor = useSelector((store) => store.user)
     return (
 
         <Box>
@@ -27,7 +27,7 @@ function CommentList({ comments, username, postId }) {
                                         padding: '8px'
                                     }}>
                                     <Typography variant='subtitle1'>
-                                        {username} wrote:
+                                        {commentAuthor?.username} wrote:
                                     </Typography>
                                     <Typography variant='body1'>
                                         {comment.commentText}

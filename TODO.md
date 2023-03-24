@@ -5,16 +5,26 @@ To Do:
     [] make a key for the map!
     [] ask dane about adding a spinny wheel 
     [] make a custom mui theme 
-    [] add links to nav bar 
     [] STRETCH filter plants on map by category (category ID?)
     [] STRETCH: show the address of the spot with reverse 
     geocaching 
     [] Readme!!!!
     [] double check all the security stuff
 
+Issues
+    - markers are not the right color at first
+    - zombie posts??? 
+    - edit map is too zoomed in 
+    - submitted by name doesn't work at first ???
+    -delete not working
+
+
+
     Done
         [x] add comments
             [x] update add spot map to center on geolocation
+
+            [x] add links to nav bar 
 
         [x] shift to mobile view
         [x] update AddSpot to be MUI 

@@ -37,6 +37,7 @@ function LocationMap(){
 function Map() {
     const dispatch = useDispatch(); 
     const mapRef = useRef(); 
+    const onLoad = useCallback(map => (mapRef.current = map), []);
 
      //set starting center location 
      const [centerLat, setCenterLat] = useState(0)
@@ -60,8 +61,7 @@ function Map() {
       () => ({
         disableDefaultUI: true,
         // clickableIcons: false,
-      }), 
-      []
+      }), []
     ); 
   
     const handleClick = (event) => {
@@ -87,13 +87,12 @@ function Map() {
       rightMargin: '20px'
   }
 
-    const onLoad = useCallback(map => (mapRef.current = map), []);
   
     //functional component GoogleMap from above - takes three props
     //zoom, center, and how big of a map 
       return (
       <GoogleMap 
-          zoom={18} 
+          zoom={19} 
           center={center} 
           mapContainerStyle={containerStyle}
           options={options}

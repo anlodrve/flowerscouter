@@ -20,8 +20,10 @@ router.get('/', (req, res) => {
         LEFT JOIN "user" ON "user".id = "comments"."authorId"
         GROUP BY "mappedPlants".id, "categories".name, "user".username
         ORDER BY "mappedPlants".id DESC`
+
     pool.query(queryText)
     .then( result => {
+      console.log('result.rows', result.rows)
       res.send(result.rows);
     })
     .catch(err => {
