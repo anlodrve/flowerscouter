@@ -23,7 +23,7 @@ function* postComment(action){
     try {
         console.log(action.payload)
         yield axios.post(`/api/comment`, {payload: action.payload});
-        yield put({type:'GET_COMMENTS'});
+        yield put({type:'GET_SPOTS'});
     } catch (error) {
         console.log("Error in post comment in saga:", error);
     }

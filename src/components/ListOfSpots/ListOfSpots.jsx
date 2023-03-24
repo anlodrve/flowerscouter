@@ -11,6 +11,7 @@ function ListOfSpots() {
 
     const dispatch = useDispatch();
     const spotsFromStore = useSelector(store => store.spots)
+    console.log('spots', spotsFromStore)
 
     //load all spots from the list on page load
     useEffect(() => {
@@ -25,8 +26,13 @@ function ListOfSpots() {
                     {console.log(spot)}
                         <Box 
                             key={spot.id}
-                            width='350px'>
-                            <Card>
+                            width='350px'
+                            pl='20px'>
+                            <Card
+                                sx={{
+                                    mb:'20px'
+                                }}
+                                >
                                 <CardMedia 
                                     component='img'
                                     height='50'
@@ -37,17 +43,20 @@ function ListOfSpots() {
                                     <Typography gutterBottom variant='h5' component='div'>
                                     {spot.name}
                                     </Typography>
-                                    <Typography variant='body2' color='text.secondary'>
+                                    <Typography variant='body1' color='text.secondary'>
                                         Description: {spot.description}
+                                    </Typography>
+                                    <Typography variant='body2' color='text.secondary'>
+                                        Submitted By: {spot.username}
                                     </Typography>
                                 </CardContent>
                                 <CardActions >
                                     <Button size='small'>Like</Button>
                                     <Button size='small'>Comments</Button> 
                                 </CardActions>
+                                <CommentList comments={spot.comments} username={spot.username} postId={spot.id}/>
                             </Card>
                         </Box>
-                        <CommentList comments={spot.comments} username={spot.username} postId={spot.id}/>
                     </>
                 )
             })}

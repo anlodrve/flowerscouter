@@ -8,15 +8,13 @@ function CommentList({ comments, username, postId }) {
 
     return (
 
-        <Box 
-            sx={{
-                width:'350px'
-            }}>
+        <Box>
             <Accordion >
                 <AccordionSummary
                     id='panel1-header'
                     aria-controls='panel1-content'
-                    expandIcon={<ExpandMoreIcon />} >
+                    expandIcon={<ExpandMoreIcon />} 
+                    >
                     <Typography>Comments</Typography>
                 </AccordionSummary>
                 {comments.map(comment => {
@@ -26,7 +24,7 @@ function CommentList({ comments, username, postId }) {
                                 <Box
                                     sx={{
                                         border: '1px solid',
-                                        padding: '10px'
+                                        padding: '8px'
                                     }}>
                                     <Typography variant='subtitle1'>
                                         {username} wrote:
