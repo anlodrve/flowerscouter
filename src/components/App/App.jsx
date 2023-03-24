@@ -10,10 +10,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
+import DrawerNav from '../Nav/DrawerNav';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AddSpot from '../AddSpot/AddSpot';
+import AppBarNav from '../Nav/AppBar';
 import ListOfSpots from '../ListOfSpots/ListOfSpots';
 import EditSpot from '../EditSpot/EditSpot';
 import AboutPage from '../AboutPage/AboutPage';
@@ -24,6 +26,10 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
+
+//fonts
+import "/Users/andrealove/Documents/PrimeAcademy/Tier3/Solo Project/flowerscouter/src/fonts/Angel-Lemona_Demo.ttf"
+
 
 function App() {
   const dispatch = useDispatch();
@@ -37,7 +43,8 @@ function App() {
   return (
     <Router>
       <div>
-        <Nav />
+        <AppBarNav />
+        <DrawerNav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
