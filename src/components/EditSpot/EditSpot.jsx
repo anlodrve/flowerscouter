@@ -1,46 +1,48 @@
-import React, { useMemo, useRef, useCallback, useEffect, useState  } from "react";
+import React, { useMemo, useRef, useCallback, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api"
 
+import { TextField, Button } from "@mui/material";
 
-function EditSpot(){
+
+function EditSpot() {
     //gives us the id from the url 
-    const { id } = useParams(); 
+    const { id } = useParams();
 
-    const dispatch = useDispatch(); 
-    const history = useHistory(); 
-    const mapRef = useRef(); 
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const mapRef = useRef();
 
     const onLoad = useCallback(map => (mapRef.current = map), []);
 
     useEffect(() => {
         //get individual spot based on ID from url params
-        dispatch({ type: "SELECT_SPOT", payload: id});
+        dispatch({ type: "SELECT_SPOT", payload: id });
         //get all the categories 
         dispatch({ type: "GET_CATEGORIES" });
-        
+
     }, [])
 
     const selectedSpot = useSelector((store) => store.edit);
     console.log('selectedSpot', selectedSpot)
 
-   //set starting center location 
-   let center = useMemo(() => ({lat: selectedSpot?.location?.x, lng: selectedSpot?.location?.y}), [selectedSpot.id] ) ;
+    //set starting center location 
+    let center = useMemo(() => ({ lat: selectedSpot?.location?.x, lng: selectedSpot?.location?.y }), [selectedSpot.id]);
 
-//    console.log('selectedSpot x', selectedSpot.location.x)
+    //    console.log('selectedSpot x', selectedSpot.location.x)
 
     const { isLoaded } = useJsApiLoader({
         googleMapsApiKey: process.env.REACT_APP_API_KEY,
-    })  
+    })
 
     console.log('selectedSpot:', selectedSpot)
 
     const handleChange = (event, key) => {
         //key is a string value from the input
         dispatch({
-            type: 'EDIT_ONCHANGE', 
-            payload: {property: key, value: event.target.value}
+            type: 'EDIT_ONCHANGE',
+            payload: { property: key, value: event.target.value }
         })
     }
 
@@ -48,12 +50,13 @@ function EditSpot(){
         const clickLocation = {
             x: event.latLng.lat(),
             y: event.latLng.lng()
-            }
+        }
 
-       dispatch({
-        type: 'EDIT_LOCATION',
-        payload: {location: clickLocation}
-    })}
+        dispatch({
+            type: 'EDIT_LOCATION',
+            payload: { location: clickLocation }
+        })
+    }
 
     const handleSubmit = () => {
         console.log(selectedSpot);
@@ -64,39 +67,55 @@ function EditSpot(){
 
         history.push('/user');
     }
-        
+
     // if(!selectedSpot.location){
     //     return <div>Loading...</div>
     // }
 
-    if(!isLoaded) 
-        {return <div>Loading...</div>};
+    if (!isLoaded) { return <div>Loading...</div> };
 
-    return(
+    return (
         <div>
             <h2>Edit Post</h2>
             <form id="editSpotForm" onSubmit={handleSubmit}>
-            <div className="mapContainer">
-                <GoogleMap
-                        zoom={17} 
-                        center={center} 
+                <div className="mapContainer">
+                    <GoogleMap
+                        zoom={17}
+                        center={center}
                         mapContainerClassName="map-container"
                         onLoad={onLoad}
                         onClick={(event) => handleClick(event, 'location')}
-                        >
-                                
-                        <MarkerF key={selectedSpot.id} position={{lat: selectedSpot?.location?.x, lng: selectedSpot?.location?.y}}/>
-                                
+                    >
+
+                        <MarkerF key={selectedSpot.id} position={{ lat: selectedSpot?.location?.x, lng: selectedSpot?.location?.y }} />
+
 
                     </GoogleMap>
-            </div>
-            <textarea
+                </div>
+                <TextField
+                    label='Description'
+                    variant='outlined'
+                    value={selectedSpot.description}
+                    onChange={(event) => handleChange(event, 'description')}
+                    sx={{
+                        ml: '20px',
+                        width: '350px',
+                    }}>
+                </TextField>
+                <Button
+                            type="submit"
+                            variant='contained'
+                            sx={{ mx: '40%' }}
+                        >
+                            Save Changes
+                        </Button>
+                {/* <textarea
                 label='Description' 
                 type="textarea" 
                 value={selectedSpot.description}
                 onChange={(event) => handleChange(event, 'description')}>
-                </textarea>
-            <button type="submit">Save Changes</button>
+                </textarea> */}
+                {/* <button type="submit">Save Changes</button> */}
             </form>
         </div>
 

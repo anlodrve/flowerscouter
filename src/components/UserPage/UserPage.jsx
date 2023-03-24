@@ -9,6 +9,8 @@ import { useHistory } from 'react-router-dom';
 //import UserMap
 import UserMap from '../UserMap/UserMap';
 
+import './UserPage.css'
+
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -45,13 +47,13 @@ function UserPage() {
         {spots.length > 0
           ? (
            <> 
-           <h3>Your Posts:</h3>
+           <h3 id='yourPosts'>Your Posts:</h3>
             <UserMap />
             <ul>
             {spots.map((spotObject) => {
               return (
                 <Box 
-                  key={spotObject.id}
+                  id={spotObject.id}
                   width='300px'>
                     <Typography
                       variant='h5' 

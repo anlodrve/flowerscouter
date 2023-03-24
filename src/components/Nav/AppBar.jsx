@@ -9,7 +9,7 @@ function AppBarNav() {
             >
             <Toolbar>
                 <Typography 
-                    variant='h3' 
+                    variant='h4' 
                     component='div' 
                     fontFamily={'Angel'}
                     sx={{
