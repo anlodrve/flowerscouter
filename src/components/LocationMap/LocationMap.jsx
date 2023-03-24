@@ -10,6 +10,7 @@ import { Box } from "@mui/material";
 import "./LocationMap.css"
 
 function LocationMap(){
+  //load google map
     const { isLoaded } = useJsApiLoader({
       googleMapsApiKey: process.env.REACT_APP_API_KEY,
     })
@@ -36,9 +37,21 @@ function LocationMap(){
 function Map() {
     const dispatch = useDispatch(); 
     const mapRef = useRef(); 
+
+     //set starting center location 
+     const [centerLat, setCenterLat] = useState(0)
+     const [centerLng, setCenterLng] = useState(0) 
   
     //useMemo performs the calculation once everytime the array arg changes, reuse the same value every time it re-renders
-    const center = useMemo(() => ({lat: 44.94, lng: -93.25}), [] ) ;
+    const center = useMemo(() => ({lat: centerLat, lng: centerLng}), [] ) ;
+
+    useEffect(() => {
+      //get user current location and set center as geolocation
+      navigator.geolocation.getCurrentPosition(
+          (position) => {
+              setCenterLat(position.coords.latitude)
+              setCenterLng(position.coords.longitude)
+            })}, []);
 
     const [newLocation, setNewLocation] = useState([])
   

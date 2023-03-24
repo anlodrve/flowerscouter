@@ -13,8 +13,10 @@ function AddSpot () {
     const history = useHistory(); 
     const dispatch = useDispatch();
     const categoriesFromStore = useSelector((store) => store.categories)
-    console.log('catgories from store', categoriesFromStore)
     const locationFromStore = useSelector((store)=> store.location)
+
+    // console.log('catgories from store', categoriesFromStore)
+
 
     useEffect(() => {
         dispatch({ type: "GET_CATEGORIES" });
