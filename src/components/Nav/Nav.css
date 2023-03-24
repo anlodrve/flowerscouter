@@ -1,15 +1,15 @@
-.nav {
+/* .nav {
   /* flex box layout */
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
   align-items: center;
 
   margin: 0 0 30px;
   background-color: #5c2a82;
   overflow: hidden;
-}
+} */ 
 
-.nav a {
+/* .nav a {
   text-decoration: none;
 }
 
@@ -28,15 +28,15 @@
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 15px; */
 
   /* these last two make the logout button in
   the nav bar look like another link */
-  border: none;
+  /* border: none;
   cursor: pointer;
   outline: 0;
-}
+} */
 
-.navLink:hover {
+/* .navLink:hover {
   background-color: #008183;
-}
+} */
