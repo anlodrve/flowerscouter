@@ -17,7 +17,7 @@ function CommentList({ comments, postId }) {
                     >
                     <Typography>Comments</Typography>
                 </AccordionSummary>
-                {comments.map(comment => {
+                { comments && comments.map(comment => {
                     return (
                         <>
                             <AccordionDetails>
@@ -36,7 +36,7 @@ function CommentList({ comments, postId }) {
                             </AccordionDetails >
                         </>
                     )
-                })}
+                }) }
                 <AddComment postId={postId} />
             </Accordion>
         </Box>

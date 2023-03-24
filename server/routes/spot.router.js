@@ -10,16 +10,25 @@ const {
 //get all spots
 router.get('/', (req, res) => {
     const queryText = 
-        `SELECT "mappedPlants".id, "mappedPlants".location, "mappedPlants".category, 
-        "mappedPlants".description, "mappedPlants".author, "categories".name, 
-        COALESCE(json_agg("comments") FILTER (WHERE "comments"."commentText" IS NOT NULL), '[]') AS "comments", 
-        "user".username 
+        ` SELECT "mappedPlants".id, "mappedPlants".location, "mappedPlants".category, 
+        "mappedPlants".description, "mappedPlants".author, "categories".name,"user".username, 
+
+        (SELECT json_agg("comment") 
+        			FROM (
+        				SELECT "comments".id, "comments"."commentText", "comments"."authorId", "comments"."postId", "user".username FROM "comments"
+        				JOIN "user" ON "user".id = "comments"."authorId"
+--        				WHERE "comments"."commentText" IS NOT NULL
+        				WHERE "comments"."postId" = "mappedPlants".id
+
+        				)  "comment"
+		) AS "comments"
         FROM "mappedPlants" 
         LEFT JOIN "categories" ON "categories".id = "mappedPlants".category
         LEFT JOIN "comments" ON "comments"."postId" = "mappedPlants".id
-        LEFT JOIN "user" ON "user".id = "comments"."authorId"
+        Left JOIN "user" ON "user".id = "mappedPlants"."author"
+--        Left JOIN "user" "U2" ON "U2".id = "mappedPlants"."author"
         GROUP BY "mappedPlants".id, "categories".name, "user".username
-        ORDER BY "mappedPlants".id DESC`
+        ORDER BY "mappedPlants".id DESC;`
 
     pool.query(queryText)
     .then( result => {

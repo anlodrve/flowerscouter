@@ -1,7 +1,5 @@
 To Do: 
     [] move like button to the right of card
-    [] fix add spot form styling 
-    [] toggle button for map vs list of spots 
     [] make a key for the map!
     [] ask dane about adding a spinny wheel 
     [] make a custom mui theme 
@@ -14,13 +12,17 @@ To Do:
 Issues
     - markers are not the right color at first
     - zombie posts??? 
-    - edit map is too zoomed in 
     - submitted by name doesn't work at first ???
     -delete not working
 
 
 
     Done
+        [x] toggle button for map vs list of spots 
+    [x] fix add spot form styling 
+
+        [x] edit map is too zoomed in 
+
         [x] add comments
             [x] update add spot map to center on geolocation
 

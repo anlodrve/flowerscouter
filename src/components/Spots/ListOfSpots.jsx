@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 //import SpotItem
 import SpotItem from './SpotItem';
 
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 
 function ListOfSpots() {
 
@@ -23,33 +23,52 @@ function ListOfSpots() {
 
     const handleMap = () => {
         history.push("/home");
-      }
+    }
 
     return (
-        <div className='listOfSpots'>
-            <Button
-        variant='outlined'
-        id="toMap"
-        onClick={handleMap}
-        sx={{
-          ml: '130px',
-          mb: '20px',
-          px: '20px'
-        }}
-        >
-          Map View
-      </Button>
-            {spotsFromStore.map(spot => {
-                return (
-                    <>
-                        {console.log(spot)}
-                        {/* passing props to spotItem */}
-                        <SpotItem spot={spot} />
-                    </>
-                )
-            })}
+        <>
+            {/* If spotsFromStore isn't loaded yet, show this */}
+            {!spotsFromStore && (
+                <h3>Loading Spots...</h3>
+            )}
+            {/* If spotsFromStore has loaded, show this */}
+            {spotsFromStore && (
+                <div className='listOfSpots'>
+                    <Typography
+                        align='center'
+                        variant='h5'
+                        sx={{
+                            ml: '15px'
+                        }}
+                    >
+                        List of All Spots
+                    </Typography>
+                    <Button
+                        variant='outlined'
+                        id="toMap"
+                        onClick={handleMap}
+                        sx={{
+                            ml: '130px',
+                            mt: '50px',
+                            mb: '20px',
+                            px: '20px'
+                        }}
+                    >
+                        Map View
+                    </Button>
+                    {spotsFromStore.map(spot => {
+                        return (
+                            <>
+                                {console.log(spot)}
+                                {/* passing props to spotItem */}
+                                <SpotItem spot={spot} />
+                            </>
+                        )
+                    })}
 
-        </div>
+                </div>
+            )}
+        </>
     )
 
 }
