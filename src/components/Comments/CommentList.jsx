@@ -8,17 +8,20 @@ function CommentList({ comments, username, postId }) {
 
     return (
 
-        <>
-            {comments.map(comment => {
-                return (
-                    <>
-                        <Accordion>
-                            <AccordionSummary
-                                id='panel1-header'
-                                aria-controls='panel1-content'
-                                expandIcon={<ExpandMoreIcon />} >
-                                <Typography>Comments</Typography>
-                            </AccordionSummary>
+        <Box 
+            sx={{
+                width:'350px'
+            }}>
+            <Accordion >
+                <AccordionSummary
+                    id='panel1-header'
+                    aria-controls='panel1-content'
+                    expandIcon={<ExpandMoreIcon />} >
+                    <Typography>Comments</Typography>
+                </AccordionSummary>
+                {comments.map(comment => {
+                    return (
+                        <>
                             <AccordionDetails>
                                 <Box
                                     sx={{
@@ -33,14 +36,12 @@ function CommentList({ comments, username, postId }) {
                                     </Typography>
                                 </Box>
                             </AccordionDetails >
-                        </Accordion>
-                        <AddComment postId={postId} />
-                    </>
-                )
-            })}
-
-
-        </>
+                        </>
+                    )
+                })}
+                <AddComment postId={postId} />
+            </Accordion>
+        </Box>
     )
 }
 

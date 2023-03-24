@@ -25,7 +25,7 @@ function ListOfSpots() {
                     {console.log(spot)}
                         <Box 
                             key={spot.id}
-                            width='300px'>
+                            width='350px'>
                             <Card>
                                 <CardMedia 
                                     component='img'

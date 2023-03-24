@@ -3,6 +3,8 @@ import React from 'react';
 import {  useState  } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { Box } from '@mui/material';
+
 
 function AddComment({ postId }) {
     const dispatch = useDispatch(); 
@@ -32,9 +34,9 @@ function AddComment({ postId }) {
     })
    }
    
-        
+
     return(
-        <div className="commentBox">
+        <Box className="commentBox">
             {/* comment inputs */}
             <form onSubmit={handleSubmit}>
                 <textarea 
@@ -49,7 +51,7 @@ function AddComment({ postId }) {
                     </textarea>
                     <button type="submit">Submit Comment</button>
             </form>
-        </div>
+        </Box>
     )
 
 }
