@@ -4,6 +4,8 @@
     url("/Users/andrealove/Documents/PrimeAcademy/Tier3/Solo Project/flowerscouter/src/fonts/Angel-Lemona_Demo.ttf") format("truetype");
 }
 
+
+
 html,
 body,
 #react-root {
@@ -11,7 +13,8 @@ body,
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Mulish', sans-serif;
+  /* 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
   margin: 0px;
 }
 
