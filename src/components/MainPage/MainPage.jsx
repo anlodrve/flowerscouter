@@ -23,7 +23,7 @@ function HomePage() {
     >
       <Typography
         align='center'
-        variant='h3'
+        variant='h4'
         >
           Home Page
       </Typography>

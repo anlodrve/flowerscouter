@@ -1,22 +1,30 @@
 //mui imports 
-import { Drawer, Box, Typography, IconButton, Link, Stack } from "@mui/material"
+import { Drawer, Box, Typography, IconButton, Stack } from "@mui/material"
 import MenuIcon from '@mui/icons-material/Menu'
+
+import './DrawerNav.css'
 
 //font
 import "/Users/andrealove/Documents/PrimeAcademy/Tier3/Solo Project/flowerscouter/src/fonts/Angel-Lemona_Demo.ttf"
 
 //react imports 
 import React, { useState } from "react";
-// import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import LogOutButton from '../LogOutButton/LogOutButton';
 
-import { useSelector } from 'react-redux';
-
 function DrawerNav() {
     const user = useSelector((store) => store.user);
-
+    const dispatch = useDispatch();
     const [isDrawerOpen, setDrawerOpen] = useState(false)
+
+    const handleLogout = () => {
+        setDrawerOpen(false)
+        dispatch({ type: 'LOGOUT' })
+    }
+
     return (
         <>
             <IconButton size='large' edge='start' color='inherit' aria-label='logo' onClick={() => setDrawerOpen(true)}>
@@ -38,31 +46,57 @@ function DrawerNav() {
                     {!user.id && (
                         // If there's no user, show login/registration links
                         <Link href="/login" onClick={() => setDrawerOpen(false)}>
-                            Login / Register
+                             🌺 Login / Register
                         </Link>
                     )}
 
-                     {/* If a user is logged in, show these links */}
-                {user.id && (
-                    <>
-                        <Link href="/home" onClick={() => setDrawerOpen(false)}>
-                            Home
-                        </Link>
+                    {/* If a user is logged in, show these links */}
+                    {user.id && (
+                        <>
+                            <Link 
+                                to="/home" 
+                                onClick={() => setDrawerOpen(false)}
+                                underline="none"
+                                sx={{
+                                    ml: '20px'
+                                }}>
+                                🌷 Home
+                            </Link>
 
-                        <Link href="/add" onClick={() => setDrawerOpen(false)}>
-                           Add a Spot!
-                        </Link>
+                            <Link 
+                                to="/add" 
+                                onClick={() => setDrawerOpen(false)}
+                                underline="none"
+                                sx={{
+                                    ml:'20px'
+                                }}>
+                                🌼 Add a Spot!
+                            </Link>
 
-                        <Link href="/list" onClick={() => setDrawerOpen(false)}>
-                           List of Spots
-                        </Link>
+                            <Link 
+                                to="/list" 
+                                onClick={() => setDrawerOpen(false)}
+                                underline="none"
+                                sx={{
+                                    ml: '20px'
+                                }}>
+                                🌹 List of Spots
+                            </Link>
 
-                        <Link href="/user" onClick={() => setDrawerOpen(false)}>
-                           Your Spots
-                        </Link>
-                        <LogOutButton className="navLink" />
-                    </>
-                )}
+                            <Link 
+                                to="/user" 
+                                onClick={() => setDrawerOpen(false)}
+                                underline="none"
+                                sx={{
+                                    ml: '20px'
+                                }}>
+                                🌻 Your Spots
+                            </Link>
+
+                            <LogOutButton className="navLink" />
+
+                        </>
+                    )}
                 </Stack>
             </Drawer>
         </>

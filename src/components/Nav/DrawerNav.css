@@ -4,4 +4,16 @@
       url("/Users/andrealove/Documents/PrimeAcademy/Tier3/Solo Project/flowerscouter/src/fonts/Angel-Lemona_Demo.ttf") format("truetype");
   }
 
-  
+  .navLink {
+    color: #ff8484;
+    text-align: left;
+    margin-left: 20px;
+    /* padding: 24px 10px; */
+    text-decoration: none;
+    font-size: 15px;
+    /* these last two make the logout button in
+    the nav bar look like another link */
+    border: none;
+    cursor: pointer;
+    outline: 0;
+  }
