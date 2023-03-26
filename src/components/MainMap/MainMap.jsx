@@ -66,7 +66,8 @@ function Map() {
     const options = useMemo(
         () => ({
             disableDefaultUI: true,
-            // clickableIcons: false,
+            clickableIcons: false,
+            gestureHandling: 'greedy',
         }), []
     );
 
