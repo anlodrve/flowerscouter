@@ -42,12 +42,32 @@ function UserPage() {
   }
   return (
     <Box width='385px'>
-      <h2>Welcome, {user.username}!</h2>
+      <Typography
+        variant='h3'
+        component='div'
+        sx={{
+          fontWeight: 600,
+          fontSize: '36px',
+          textAlign: 'center',
+          mb: '10px'
+        }}
+      >
+        Welcome, {user.username}!
+      </Typography>
       <div id="ternary">
         {spots.length > 0
           ? (
             <>
-              <h3 id='yourPosts'>Your Posts:</h3>
+              <Typography
+                variant='h5'
+                color='text.secondary'
+                sx={{
+                  fontWeight: 500,
+                  ml: '20px'
+                }}
+              >
+                Your Posts:
+              </Typography>
               <UserMap />
               <ul>
                 {spots.map((spotObject) => {
@@ -58,41 +78,73 @@ function UserPage() {
 
                       {user.id === spotObject.author && (
                         <>
-                          <Typography
-                            variant='h5'
-                            component='div'
+                          <Card
+                            sx={{
+                              mb: '20px'
+                            }}
                           >
-                            {spotObject.name}
-                          </Typography>
-                          <Typography
-                            variant='body2'
-                            color='text.secondary'
-                          >
-                            Description: {spotObject.description}
-                          </Typography>
-                          <Typography
-                            variant='body2'
-                            color='text.secondary'
-                          >
-                            {spotObject.location.x}, {spotObject.location.y}
-                          </Typography>
+                            <CardContent>
+                              <Typography
+                                variant='h5'
+                                component='div'
+                                gutterBottom
+                                sx={{
+                                  textAlign: 'center',
+                                }}
+                              >
+                                {spotObject.name}
+                              </Typography>
+                              <Typography
+                                variant='body2'
+                                color='text.secondary'
+                                sx={{ 
+                                  mb: '10px'
+                                }}
+                              >
+                                Description: {spotObject.description}
+                              </Typography>
+                              <Typography
+                                variant='body2'
+                                color='text.secondary'
+                              >
+                                {spotObject.location.x}, {spotObject.location.y}
+                              </Typography>
+                            </CardContent>
 
-
-                          <Button
-                            size='small'
-                            variant='contained'
-                            className="deleteButton"
-                            value={spotObject.id}
-                            onClick={handleDelete}>
-                            Delete
-                          </Button>
-                          <Button
-                            size='small'
-                            value={spotObject.id}
-                            onClick={() => history.push(`/edit/${spotObject.id}`)}
-                          >
-                            Edit
-                          </Button>
+                            <CardActions >
+                            <Box
+                              sx={{ 
+                                mx: '40px',
+                                mb: '10px'
+                              }}
+                              >
+                              <Button
+                                size='small'
+                                variant='contained'
+                                className="deleteButton"
+                                value={spotObject.id}
+                                onClick={handleDelete}
+                                sx={{ 
+                                  mr: '40px'
+                                }}
+                                >
+                                Delete
+                              </Button>
+                              <Button
+                                size='small'
+                                variant='contained'
+                                color='secondary'
+                                value={spotObject.id}
+                                onClick={() => history.push(`/edit/${spotObject.id}`)}
+                                sx={{ 
+                                  ml: '20px'
+                                }}
+                              >
+                                Edit
+                              </Button>
+                              </Box>
+                            </CardActions>
+                          </Card>
                         </>
                       )}
                     </Box>)
