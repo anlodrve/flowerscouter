@@ -5,7 +5,7 @@ import LocationMap from '../LocationMap/LocationMap';
 import "./AddSpot.css"
 
 //mui imports 
-import { Box, InputLabel, MenuItem, FormControl, FormHelperText, Select, Stack, TextField, Button } from '@mui/material';
+import { Typography, Box, InputLabel, MenuItem, FormControl, FormHelperText, Select, Stack, TextField, Button } from '@mui/material';
 
 
 function AddSpot() {
@@ -48,16 +48,34 @@ function AddSpot() {
 
     return (
         <Box className='addSpotForm' >
-            <h2>Add A Spot</h2>
-            <h4>Click on the map to set the location:</h4>
+             <Typography 
+             gutterBottom 
+             variant='h5' 
+             component='div'
+             sx={{
+                textAlign: 'center'
+             }}
+             
+             >
+                       Add A Spot
+             </Typography>
+             <Typography 
+             variant='body1' 
+             component='div'
+             sx={{
+                ml: '22px'
+             }}>
+             Click on the map to set the location:
+             </Typography>
             <form onSubmit={addSpot}>
                 <LocationMap />
                 <Stack spacing={1} direction='column'>
-                    <FormControl required sx={{ m: 1, minWidth: 120 }}>
+                    <FormControl required sx={{ m: 1}}>
                         <InputLabel
                             id="selectCategory"
                             sx={{
-                                ml: '15px'
+                                ml: '15px',
+                                fontSize: '20px'
                             }}
                         >Category</InputLabel>
                         <Select
@@ -66,7 +84,7 @@ function AddSpot() {
                             value={newSpot.category}
                             label="Category *"
                             sx={{
-                                ml: '15px'
+                                mx: '15px'
                             }}
                             onChange={(event) => handleChange(event, 'category')}
                         >
@@ -74,7 +92,6 @@ function AddSpot() {
                                 <MenuItem
                                     key={categoryObject.id}
                                     value={categoryObject.id}
-
                                 >
                                     {categoryObject.name}
                                 </MenuItem>
@@ -82,6 +99,7 @@ function AddSpot() {
                         </Select>
                         <FormHelperText
                             sx={{
+                                fontSize: '14px',
                                 ml: '15px'
                             }}>Required</FormHelperText>
                     </FormControl>
@@ -95,13 +113,16 @@ function AddSpot() {
                             value={newSpot.description}
                             onChange={(event) => handleChange(event, 'description')}
                             sx={{
+                                fontSize: '20px',
                                 ml: '20px',
                                 width: '350px',
                             }}>
                         </TextField>
                         <FormHelperText
                             sx={{
-                                ml: '15px'
+                                fontSize: '15px',
+                                mx: '17px',
+                                mb: '20px'
                             }}>
                             Describe the plant and where to view it - i.e. "When facing the blue house, there is a large light purple lilac to the left of the front steps"
                         </FormHelperText>
