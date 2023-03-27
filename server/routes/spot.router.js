@@ -8,7 +8,7 @@ const {
 } = require(`../modules/authentication-middleware`);
 
 //get all spots
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
   const queryText =
     ` SELECT "mappedPlants".id, "mappedPlants".location, "mappedPlants".category, 
         "mappedPlants".description, "mappedPlants".author, "categories".name,"user".username, 
@@ -112,7 +112,8 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.put('/:id', (req, res) => {
+//update a spot only for the authenticated user 
+router.put('/:id', rejectUnauthenticated, (req, res) => {
   const queryText = `UPDATE "mappedPlants" SET "description" = $1, "location" = POINT ($2, $3) WHERE "id" = $4`
   const queryParams = [req.body.description, req.body.location.x, req.body.location.y, req.params.id]
 
