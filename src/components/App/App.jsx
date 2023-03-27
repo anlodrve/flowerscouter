@@ -8,12 +8,16 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 
+//styling
+import { ThemeProvider, createTheme } from '@mui/material';
+import './App.css';
+import "/Users/andrealove/Documents/PrimeAcademy/Tier3/Solo Project/flowerscouter/src/fonts/Angel-Lemona_Demo.ttf"
+// import AppTheme from '../AppTheme/AppTheme';
+
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 import DrawerNav from '../Nav/DrawerNav';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
 import AddSpot from '../AddSpot/AddSpot';
 import AppBarNav from '../Nav/AppBar';
 import ListOfSpots from '../Spots/ListOfSpots';
@@ -24,22 +28,63 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
-import './App.css';
-
-//fonts
-import "/Users/andrealove/Documents/PrimeAcademy/Tier3/Solo Project/flowerscouter/src/fonts/Angel-Lemona_Demo.ttf"
-
 
 function App() {
-  const dispatch = useDispatch();
 
-  const user = useSelector(store => store.user);
+  const theme = createTheme({
+    palette: {
+      mode: 'light',
+      primary: {
+        main: '#cb6700',
+        contrastText: '#ffe2ba',
+        light: '#e6913b',
+      },
+      secondary: {
+        main: '#d20353',
+        contrastText: '#fbe3e3',
+      },
+      background: {
+        default: '#ffabc1',
+        paper: '#ffe6e8',
+      },
+      text: {
+        primary: '#b7094e',
+        disabled: 'rgba(94,94,94,0.6)',
+        secondary: 'rgba(57,3,121,0.96)',
+        hint: '#421292',
+      },
+      error: {
+        main: '#b71c1c',
+      },
+      info: {
+        main: '#26a69a',
+      },
+      success: {
+        main: '#9ccc65',
+      },
+      warning: {
+        main: '#15ed02',
+      },
+      divider: '#00695c',
+    },
+    typography: {
+      fontFamily: 'Mulish',
+      fontWeightRegular: 500,
+    },
+  
+})
 
-  useEffect(() => {
-    dispatch({ type: 'FETCH_USER' });
-  }, [dispatch]);
 
-  return (
+const dispatch = useDispatch();
+
+const user = useSelector(store => store.user);
+
+useEffect(() => {
+  dispatch({ type: 'FETCH_USER' });
+}, [dispatch]);
+
+return (
+  <ThemeProvider theme={theme}>
     <Router>
       <div>
         <AppBarNav />
@@ -84,12 +129,12 @@ function App() {
             <ListOfSpots />
           </ProtectedRoute>
 
-           <ProtectedRoute 
+          <ProtectedRoute
             //logged in shows edit page, passing id as a parameter, else shows LoginPage
-            exact 
-            path="/edit/:id" 
-            >
-              <EditSpot />
+            exact
+            path="/edit/:id"
+          >
+            <EditSpot />
           </ProtectedRoute>
 
           <Route
@@ -142,7 +187,8 @@ function App() {
         <Footer />
       </div>
     </Router>
-  );
+  </ThemeProvider>
+);
 }
 
 export default App;

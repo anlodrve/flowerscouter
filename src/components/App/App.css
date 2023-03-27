@@ -16,6 +16,8 @@ body {
   font-family: 'Mulish', sans-serif;
   /* 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
   margin: 0px;
+  background-color: #fbbbcb;
+  color: #b7094e;
 }
 
 img {
@@ -38,10 +40,10 @@ Button
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  border-color: #014041;
+  border-color: #5e006b;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #00acb0;
+  background-color: #a56ec2;
   color: #f8f8f8;
   font-size: 1.1rem;
   outline: 0;
@@ -64,7 +66,7 @@ Button
 }
 
 .btn:hover {
-  background-color: #008183;
+  background-color: #380c47;
   text-decoration: none;
 }
 
@@ -81,8 +83,8 @@ Button
 
 .btn_asLink:hover {
   background-color: transparent;
-  border-color: #008183;
-  color: #008183;
+  border-color: #2f0447;
+  color: #602a7d;
 }
 
 /* --------------------------------------------------------------------------------

@@ -3,7 +3,7 @@ import MainMap from '../MainMap/MainMap';
 import { useHistory } from 'react-router-dom';
 
 //mui imports
-import { Box, Typography, Button, IconButton } from '@mui/material'
+import { Box, Typography, Button } from '@mui/material'
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 
 
@@ -34,6 +34,7 @@ function HomePage() {
       <Button
         variant='outlined'
         id="toList"
+        color='secondary'
         onClick={handleList}
         sx={{
           mt: '20px',
@@ -50,6 +51,7 @@ function HomePage() {
         variant='contained'
         id="addSpot"
         onClick={handleAdd}
+        color='secondary'
         startIcon={<AddLocationAltIcon />}
         sx={{
           mt: '15px',

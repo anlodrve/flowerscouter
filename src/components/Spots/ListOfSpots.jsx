@@ -35,10 +35,9 @@ function ListOfSpots() {
             {spotsFromStore && (
                 <div className='listOfSpots'>
                     <Typography
-                        align='center'
                         variant='h5'
                         sx={{
-                            ml: '15px'
+                            textAlign: 'center'
                         }}
                     >
                         List of All Spots
@@ -49,7 +48,7 @@ function ListOfSpots() {
                         onClick={handleMap}
                         sx={{
                             ml: '130px',
-                            mt: '50px',
+                            mt: '20px',
                             mb: '20px',
                             px: '20px'
                         }}

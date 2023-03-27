@@ -4,10 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 //google maps import
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api"
 
+//styling
 import { Box } from "@mui/material";
-
-//import css
-import "./MainMap.css"
 
 //import Marker custom component
 import Marker from "../Marker/Marker";
@@ -68,7 +66,8 @@ function Map() {
     const options = useMemo(
         () => ({
             disableDefaultUI: true,
-            // clickableIcons: false,
+            clickableIcons: false,
+            gestureHandling: 'greedy',
         }), []
     );
 

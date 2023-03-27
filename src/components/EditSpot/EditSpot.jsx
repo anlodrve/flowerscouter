@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useCallback, useEffect, useState } from "react";
+import React, { useMemo, useRef, useCallback, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api"
@@ -21,16 +21,21 @@ function EditSpot() {
         dispatch({ type: "SELECT_SPOT", payload: id });
         //get all the categories 
         dispatch({ type: "GET_CATEGORIES" });
-
     }, [])
+
+    //map customization 
+    const options = useMemo(
+        () => ({
+            clickableIcons: false,
+            gestureHandling: 'greedy',
+        }), []
+    );
 
     const selectedSpot = useSelector((store) => store.edit);
     console.log('selectedSpot', selectedSpot)
 
     //set starting center location 
     let center = useMemo(() => ({ lat: selectedSpot?.location?.x, lng: selectedSpot?.location?.y }), [selectedSpot.id]);
-
-    //    console.log('selectedSpot x', selectedSpot.location.x)
 
     const { isLoaded } = useJsApiLoader({
         googleMapsApiKey: process.env.REACT_APP_API_KEY,
@@ -49,6 +54,7 @@ function EditSpot() {
         })
     }
 
+    //set location data on click 
     const handleClick = (event) => {
         const clickLocation = {
             x: event.latLng.lat(),
@@ -71,11 +77,6 @@ function EditSpot() {
         history.push('/user');
     }
 
-    // if(!selectedSpot.location){
-    //     return <div>Loading...</div>
-    // }
-
-
     const containerStyle = {
         width: '350px',
         height: '350px',
@@ -86,44 +87,49 @@ function EditSpot() {
     return (
         <div>
             <h2>Edit Post</h2>
-            <form id="editSpotForm" onSubmit={handleSubmit}>
-                <Box    sx={{
-                width: 390,
-                mr: 'auto',
-                ml: '20px',
-                my: '20px'
-            }}>
-                    <GoogleMap
-                        zoom={17}
-                        center={center}
-                        mapContainerStyle={containerStyle}
-                        onLoad={onLoad}
-                        onClick={(event) => handleClick(event, 'location')}
-                    >
-
-                        <MarkerF key={selectedSpot.id} position={{ lat: selectedSpot?.location?.x, lng: selectedSpot?.location?.y }} />
-
-
-                    </GoogleMap>
-                </Box>
-                <TextField
-                    label='Description'
-                    variant='outlined'
-                    value={selectedSpot.description}
-                    onChange={(event) => handleChange(event, 'description')}
-                    sx={{
+            {!selectedSpot && (
+                <h4>Loading...</h4>
+            )}
+            {selectedSpot && (
+                <form id="editSpotForm" onSubmit={handleSubmit}>
+                    <Box sx={{
+                        width: 390,
+                        mr: 'auto',
                         ml: '20px',
-                        width: '350px',
+                        my: '20px'
                     }}>
-                </TextField>
-                <Button
-                            type="submit"
-                            variant='contained'
-                            sx={{ mx: '40%' }}
+                        <GoogleMap
+                            zoom={17}
+                            center={center}
+                            mapContainerStyle={containerStyle}
+                            options={options}
+                            onLoad={onLoad}
+                            onClick={(event) => handleClick(event, 'location')}
                         >
-                            Save Changes
-                        </Button>
-            </form>
+                            <MarkerF key={selectedSpot.id} position={{ lat: selectedSpot?.location?.x, lng: selectedSpot?.location?.y }} />
+                        </GoogleMap>
+                    </Box>
+                    <TextField
+                        label='Description'
+                        variant='outlined'
+                        value={selectedSpot.description}
+                        onChange={(event) => handleChange(event, 'description')}
+                        sx={{
+                            ml: '20px',
+                            width: '350px',
+                        }}>
+                    </TextField>
+                    <Button
+                        type="submit"
+                        variant='contained'
+                        sx={{
+                            mx: '40%',
+                            mt: '30px'
+                        }}
+                    >
+                        Save Changes
+                    </Button>
+                </form>)}
         </div>
 
     )

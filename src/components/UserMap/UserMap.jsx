@@ -40,18 +40,18 @@ function Map() {
     const user = useSelector((store) => store.user);
     const spots = useSelector((store) => store.spots)
     const mapRef = useRef(); 
+    const onLoad = useCallback(map => (mapRef.current = map), []);
+    const dispatch=useDispatch(); 
 
     //useMemo performs the calculation once everytime the array arg changes, reuse the same value every time it re-renders
     const center = useMemo(() => ({lat: spots[0].location.x, lng: spots[0].location.y}), [] ) ;
-
-    const onLoad = useCallback(map => (mapRef.current = map), []);
-    const dispatch=useDispatch(); 
 
   //customization 
     const options = useMemo(
         () => ({
         disableDefaultUI: true,
-        // clickableIcons: false,
+        gestureHandling: 'greedy',
+        clickableIcons: false,
         }), []
     ); 
 
@@ -74,11 +74,11 @@ function Map() {
             options={options}
             onLoad={onLoad}
         >
-            {spots.map((spotObject) => {
+            {spots.map((spotObject, i) => {
                 return (
                     <>
                     {console.log(spotObject.location)}
-                    <Marker spotObject={spotObject}/>
+                    <Marker key={i} spotObject={spotObject}/>
                     </>
                 )
             })}

@@ -5,7 +5,7 @@ import AddComment from "./AddComment";
 
 function CommentList({ comments, postId }) {
     console.log('comments array??', comments)
-    const commentAuthor = useSelector((store) => store.user)
+    // const commentAuthor = useSelector((store) => store.user)
     return (
 
         <Box>
@@ -18,6 +18,7 @@ function CommentList({ comments, postId }) {
                     <Typography>Comments</Typography>
                 </AccordionSummary>
                 { comments && comments.map(comment => {
+                    console.log('comment', comment);
                     return (
                         <>
                             <AccordionDetails>
@@ -26,8 +27,8 @@ function CommentList({ comments, postId }) {
                                         border: '1px solid',
                                         padding: '8px'
                                     }}>
-                                    <Typography variant='subtitle1'>
-                                        {commentAuthor?.username} wrote:
+                                    <Typography variant='subtitle1' color='text.secondary'>
+                                        {comment.username} wrote:
                                     </Typography>
                                     <Typography variant='body1'>
                                         {comment.commentText}
