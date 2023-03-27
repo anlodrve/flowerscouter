@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useCallback, useEffect, useState } from "react";
+import React, { useMemo, useRef, useCallback, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api"
@@ -22,6 +22,14 @@ function EditSpot() {
         //get all the categories 
         dispatch({ type: "GET_CATEGORIES" });
     }, [])
+
+    //map customization 
+    const options = useMemo(
+        () => ({
+            clickableIcons: false,
+            gestureHandling: 'greedy',
+        }), []
+    );
 
     const selectedSpot = useSelector((store) => store.edit);
     console.log('selectedSpot', selectedSpot)
@@ -68,14 +76,6 @@ function EditSpot() {
 
         history.push('/user');
     }
-
-    //map customization 
-    const options = useMemo(
-        () => ({
-            clickableIcons: false,
-            gestureHandling: 'greedy',
-        }), []
-    );
 
     const containerStyle = {
         width: '350px',
