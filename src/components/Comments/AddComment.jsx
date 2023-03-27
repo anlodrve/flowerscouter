@@ -57,7 +57,7 @@ function AddComment({ postId }) {
                         onChange={(event) => handleChange(event, 'commentText')}
                     >
                     </TextField>
-                    <Button type="submit" variant='outlined'>Submit Comment</Button>
+                    <Button type="submit" variant='contained'>Submit Comment</Button>
                 </Stack>
             </Box>
         </form>

@@ -9,9 +9,6 @@ import { useHistory } from 'react-router-dom';
 //import UserMap
 import UserMap from '../UserMap/UserMap';
 
-import './UserPage.css'
-
-
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   // const spotsFromStore = useSelector(store => store.spots);
@@ -47,7 +44,7 @@ function UserPage() {
         component='div'
         sx={{
           fontWeight: 600,
-          fontSize: '36px',
+          fontSize: '34px',
           textAlign: 'center',
           mb: '10px'
         }}
@@ -97,7 +94,7 @@ function UserPage() {
                               <Typography
                                 variant='body2'
                                 color='text.secondary'
-                                sx={{ 
+                                sx={{
                                   mb: '10px'
                                 }}
                               >
@@ -112,36 +109,36 @@ function UserPage() {
                             </CardContent>
 
                             <CardActions >
-                            <Box
-                              sx={{ 
-                                mx: '40px',
-                                mb: '10px'
-                              }}
-                              >
-                              <Button
-                                size='small'
-                                variant='contained'
-                                className="deleteButton"
-                                value={spotObject.id}
-                                onClick={handleDelete}
-                                sx={{ 
-                                  mr: '40px'
+                              <Box
+                                sx={{
+                                  mx: '40px',
+                                  mb: '10px'
                                 }}
+                              >
+                                <Button
+                                  size='small'
+                                  variant='contained'
+                                  className="deleteButton"
+                                  value={spotObject.id}
+                                  onClick={handleDelete}
+                                  sx={{
+                                    mr: '40px'
+                                  }}
                                 >
-                                Delete
-                              </Button>
-                              <Button
-                                size='small'
-                                variant='contained'
-                                color='secondary'
-                                value={spotObject.id}
-                                onClick={() => history.push(`/edit/${spotObject.id}`)}
-                                sx={{ 
-                                  ml: '20px'
-                                }}
-                              >
-                                Edit
-                              </Button>
+                                  Delete
+                                </Button>
+                                <Button
+                                  size='small'
+                                  variant='contained'
+                                  color='secondary'
+                                  value={spotObject.id}
+                                  onClick={() => history.push(`/edit/${spotObject.id}`)}
+                                  sx={{
+                                    ml: '20px'
+                                  }}
+                                >
+                                  Edit
+                                </Button>
                               </Box>
                             </CardActions>
                           </Card>
@@ -152,8 +149,27 @@ function UserPage() {
               </ul>
             </>)
           : (<>
-            <h3>You haven't added any spots to the map yet!</h3>
-            <Button variant='contained' id="addSpot" onClick={handleAdd}>Add a Spot</Button>
+            <Typography
+              variant='h6'
+              color='text.secondary'
+              sx={{
+                fontWeight: 600,
+                mt: '20px',
+                ml: '20px',
+                mb: '10px'
+              }}
+            >
+              You haven't added any spots to the map yet!
+            </Typography>
+            <Button
+              variant='contained'
+              id="addSpot"
+              sx={{
+                mt: '20px',
+                ml: '20px',
+              }}
+              onClick={handleAdd}>
+              Add a Spot</Button>
           </>)}
       </div>
     </Box>
