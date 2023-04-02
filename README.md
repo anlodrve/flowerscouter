@@ -15,13 +15,26 @@ Goals for future work include image upload, sorting the map by type of flower, a
 ---
 ## **TABLE OF CONTENTS:**
 1. Deployed Link
+1. Installation
 1. Usage
 1. Technologies used
 1. Contact
 
-
 ## Deployed link
-Check out Flower Scouter here: Coming soon!
+Check out the deployed version of Flower Scouter here: Coming soon!
+
+## Installation
+1. Make an account on the [Google Maps Platform](https://developers.google.com/maps). This account will require a billing account, but offers free usage up to 28,500 maploads per month, which should be plenty for use of this app. You will then need to enable the Google Maps API - a guide to this can be found [here] (https://support.google.com/googleapi/answer/6158841?hl=en).
+2. You will need an API key from the Google Maps Platform in order to run a Google Map in this project. Instructions can be found [here] (https://support.google.com/googleapi/answer/6158862?hl=en&ref_topic=7013279). Do not share this API key anywhere. 
+3. Create a .env file in this repo and add REACT_APP_API_KEY= and then your API key. 
+4. You will also need a Map ID. Follow the steps outlined [here] (https://developers.google.com/maps/documentation/get-map-id). You will put this in your .env file just like the API key - write MAP_ID= then your Map ID.
+5. Create a database named `flower_scouter`.
+6. The queries in the `database.sql` file are set up to create all the necessary tables. The project is built on [Postgres](https://www.postgresql.org/download/), so you will need to make sure to have that installed. I recommend using Postico to run those queries as that was used to create the queries, 
+7. Open up your editor of choice and run an `npm install` to install the necessary dependencies.
+8. Run `npm run server` in your terminal
+9. Run `npm run client` in your terminal
+10. The `npm run client` command will open up a new browser tab for you!
+
 
 ## Usage
 Registered users can log in to their account or create a new one by clicking the Register button. Once logged in, the Home Page shows all the spots on the map that have been added by all of the users. The map is centered on the user's current location. Users can click on individual markers on the map to see more information. 
@@ -55,8 +68,6 @@ Users can find all of their own spots on the User page on the map and in a list 
 * PostgreSQL
 * @react-google-maps/api
 * Material UI 
-
-To install the necessary dependencies, run "npm install" in your terminal. 
 
 ## Contact
 Please connect with me on [LinkedIn](https://www.linkedin.com/in/andrearlove/) and let me know what you think! 

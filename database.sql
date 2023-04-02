@@ -1,4 +1,6 @@
 
+-- ***If you call your database something other than "flower_scouter", you will need to update the name of your database in your pool.js file as well!***
+
 -- USER is a reserved keyword with Postgres
 -- You must use double quotes in every query that user is in:
 -- ex. SELECT * FROM "user";
