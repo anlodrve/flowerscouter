@@ -18,6 +18,7 @@ Goals for future work include image upload, sorting the map by type of flower, a
 1. Installation
 1. Usage
 1. Technologies used
+1. Acknowledgement
 1. Contact
 
 ## Deployed link
@@ -68,6 +69,9 @@ Users can find all of their own spots on the User page on the map and in a list 
 * PostgreSQL
 * @react-google-maps/api
 * Material UI 
+
+## Acknowledgement
+Thanks to [Prime Digital Academy](www.primeacademy.io) for the support and guidance through the process of building this application.
 
 ## Contact
 Please connect with me on [LinkedIn](https://www.linkedin.com/in/andrearlove/) and let me know what you think! 
