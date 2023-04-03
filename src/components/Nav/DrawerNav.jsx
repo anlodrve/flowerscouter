@@ -5,7 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import './DrawerNav.css'
 
 //font
-import "/Users/andrealove/Documents/PrimeAcademy/Tier3/Solo Project/flowerscouter/src/fonts/Angel-Lemona_Demo.ttf"
+import "../../fonts/Angel-Lemona_Demo.ttf"
 
 //react imports 
 import React, { useState } from "react";
