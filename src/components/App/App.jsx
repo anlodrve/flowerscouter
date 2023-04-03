@@ -11,8 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 //styling
 import { ThemeProvider, createTheme } from '@mui/material';
 import './App.css';
-import "/Users/andrealove/Documents/PrimeAcademy/Tier3/Solo Project/flowerscouter/src/fonts/Angel-Lemona_Demo.ttf"
-// import AppTheme from '../AppTheme/AppTheme';
+import "../../fonts/Angel-Lemona_Demo.ttf"
 
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
