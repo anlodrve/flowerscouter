@@ -56,7 +56,7 @@ Users can find all of their own spots on the User page on the map and in a list 
 10. The `npm run client` command will open up a new browser tab for you!
 
 ## What I Learned
-- Finding and using documentation for newer tools and libraries. I looked into and tested out several options for integrating Google Maps API with React. Due to the React v.18 update, finding accurate, up-to-date, and appropriate documentation for these different packages was difficult. I found @react-google-maps/api to be most usable and effective for my goal of creating and viewing markers and info windows. 
+- Finding and using documentation for newer tools and libraries. I looked into and tested out several options for integrating Google Maps API with React. Due to the React v.18 update, finding accurate, up-to-date, and appropriate documentation for these different packages was difficult. I found [@react-google-maps/api](https://react-google-maps-api-docs.netlify.app/) to be most usable and effective for my goal of creating and viewing markers and info windows. 
 
 - Accessing location data from a click was critical to creating an easy to use user experience of simply clicking to add a marker to the map. I figured out the latitude and longitude location data was stored in a function that needed to be called in order to access the data. 
 
