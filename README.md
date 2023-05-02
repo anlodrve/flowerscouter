@@ -62,8 +62,6 @@ Users can find all of their own spots on the User page on the map and in a list 
 
 - Setting the map to center on the user's current location using geoloation and the useMemo and useEffect hooks. 
 
-Goals for future work include image upload, sorting the map by type of flower, and a feature that notifies users when flowers are in bloom.
-
 ## Future Goals 
 - Reverse geocaching to turn location data into estimate addresses
 - Image upload
